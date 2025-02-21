@@ -44,7 +44,7 @@ public class DishesDaoImpl implements DishesDao {
                     resultSet.getObject("last_modification", LocalDateTime.class),
                     Unit.valueOf(resultSet.getString("unit")),
                     resultSet.getInt("unitPrice"),
-                    resultSet.getInt("quantity")
+                    resultSet.getDouble("quantity")
             ));
         }
         return ingredients;
@@ -79,5 +79,44 @@ public class DishesDaoImpl implements DishesDao {
         }
 
         return dishes;
+    }
+
+    @Override
+    public void createDishes(Dish dish) throws SQLException {
+        String queryForDish = "INSERT INTO dishes (dish_id, dish_name, dish_price) VALUES(?, ?, ?)" +
+                "ON CONFLICT (dish_id)" +
+                "DO update set " +
+                "dish_name = EXCLUDED.dish_name," +
+                "dish_price = EXCLUDED.dish_price;";
+
+
+        try (Connection connection = datasource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(queryForDish);
+            ){
+            preparedStatement.setInt(1, dish.getDishId());
+            preparedStatement.setString(2, dish.getDishName());
+            preparedStatement.setInt(3, dish.getPrice());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            throw new SQLException(e);
+        }
+
+        for (Ingredient ingredient : dish.getIngredients()){
+            String queryForIngredient = "insert into dish_ingredients (dish_id, ingredient_id, quantity) values (?, ?, ?)" +
+                    "ON CONFLICT (dish_id, ingredient_id)" +
+                    "DO UPDATE SET " +
+                    "dish_id = EXCLUDED.dish_id," +
+                    "ingredient_id = EXCLUDED.ingredient_id," +
+                    "quantity = EXCLUDED.quantity ;";
+            try (Connection connection = datasource.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(queryForIngredient)){
+                     preparedStatement.setInt(1, dish.getDishId());
+                     preparedStatement.setInt(2, ingredient.getIngredientId());
+                     preparedStatement.setDouble(3, ingredient.getQuantity());
+                     preparedStatement.executeUpdate();
+            }catch (SQLException e){
+                throw new SQLException(e);
+            }
+        }
     }
 }

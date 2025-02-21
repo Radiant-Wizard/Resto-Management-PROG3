@@ -41,7 +41,7 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.see_dishes" active-filter-id="" />
     <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.dish_ingredients" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.ingredients" active-filter-id="" />
+    <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.ingredients" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.dishes" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface DishesDao {
     List<Dish> getDishesById(int dishId) throws SQLException, IllegalAccessException;
+    void createDishes(Dish dish) throws SQLException;
 }

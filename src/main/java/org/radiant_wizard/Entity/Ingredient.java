@@ -1,6 +1,5 @@
 package org.radiant_wizard.Entity;
 import lombok.Getter;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 
