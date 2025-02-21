@@ -1,10 +1,11 @@
 package org.radiant_wizard.Entity;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class Ingredient {
+public abstract class Ingredient {
     private int ingredientId;
     private String ingredientName;
     private LocalDateTime creationDateAndLastModificationTime;
@@ -17,5 +18,16 @@ public class Ingredient {
         this.creationDateAndLastModificationTime = creationDateAndLastModificationTime;
         this.unitPrice = unitPrice;
         this.unit = unit;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "\n ingredientId : " + ingredientId +
+                "\n ingredientName : '" + ingredientName + '\'' +
+                "\n last_modification : " + creationDateAndLastModificationTime +
+                "\n unitPrice : " + unitPrice +
+                "\n unit : " + unit +
+                '}';
     }
 }
