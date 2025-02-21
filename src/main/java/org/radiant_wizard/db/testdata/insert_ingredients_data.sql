@@ -1,0 +1,16 @@
+INSERT INTO ingredients (ingredient_id, ingredient_name, creation_date_and_last_modification_time, unit_price, unit) VALUES
+(1, 'Tomato', NOW(), 300, 'G'),
+(2, 'Chicken Breast', NOW(), 2000, 'G'),
+(3, 'Lettuce', NOW(), 500, 'G'),
+(4, 'Flour', NOW(), 400, 'G'),
+(5, 'Beef', NOW(), 2500, 'G'),
+(6, 'Carrot', NOW(), 200, 'G'),
+(7, 'Potato', NOW(), 350, 'G'),
+(8, 'Cheese', NOW(), 800, 'G'),
+(9, 'Salmon', NOW(), 4000, 'G'),
+(10, 'Milk', NOW(), 1500, 'L'),
+(11, 'Bread', NOW(), 700, 'U'),
+(12, 'Rice', NOW(), 600, 'G'),
+(13, 'Lentils', NOW(), 550, 'G'),
+(14, 'Pasta', NOW(), 500, 'G'),
+(15, 'BBQ Sauce', NOW(), 1000, 'L');

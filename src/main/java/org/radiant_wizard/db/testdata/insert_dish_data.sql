@@ -1,0 +1,16 @@
+INSERT INTO dishes (dish_id, dish_name, dish_price) VALUES
+(1, 'Spaghetti Bolognese', 5000),
+(2, 'Grilled Chicken', 7500),
+(3, 'Caesar Salad', 4500),
+(4, 'Margherita Pizza', 8000),
+(5, 'Beef Steak', 12000),
+(6, 'Vegetable Stir Fry', 6000),
+(7, 'Fish & Chips', 8500),
+(8, 'Cheeseburger', 7000),
+(9, 'Sushi Platter', 15000),
+(10, 'Tomato Soup', 4000),
+(11, 'Tuna Sandwich', 5000),
+(12, 'Fried Rice', 5500),
+(13, 'Lentil Soup', 4200),
+(14, 'Lasagna', 9500),
+(15, 'BBQ Ribs', 11000);
