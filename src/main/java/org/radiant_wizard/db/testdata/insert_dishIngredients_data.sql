@@ -13,4 +13,9 @@ INSERT INTO dish_ingredients (dish_id, ingredient_id, quantity) VALUES
 (12, 12, 200), (12, 6, 150), -- Fried Rice: Rice, Carrot
 (13, 13, 100), (13, 10, 150), -- Lentil Soup: Lentils, Milk
 (14, 5, 250), (14, 14, 100), (14, 8, 50), -- Lasagna: Beef, Pasta, Cheese
-(15, 5, 300), (15, 15, 100); -- BBQ Ribs: Beef, BBQ Sauce
+(15, 5, 300), (15, 15, 100), -- BBQ Ribs: Beef, BBQ Sauce
+-- Adding Hotdog ingredients
+(16, 16, 100), -- 100g of Sausage
+(16, 17, 0.15), -- 0.15L of Oil
+(16, 18, 1), -- 1 Egg
+(16, 11, 1); -- 1 Bread (Pain)
