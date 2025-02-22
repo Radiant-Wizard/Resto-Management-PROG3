@@ -25,7 +25,7 @@ public class DishesDaoImpl implements DishesDao {
 
         while (resultSet.next()) {
             dishes.add(new Dish(
-                    resultSet.getInt("dish_id"),
+                    resultSet.getLong("dish_id"),
                     resultSet.getString("dish_name"),
                     resultSet.getInt("dish_price"),
                     ingredients
@@ -39,7 +39,7 @@ public class DishesDaoImpl implements DishesDao {
 
         while (resultSet.next()) {
             ingredients.add(new Ingredient(
-                    resultSet.getInt("ingredientId"),
+                    resultSet.getLong("ingredientId"),
                     resultSet.getString("ingredient_name"),
                     resultSet.getObject("last_modification", LocalDateTime.class),
                     Unit.valueOf(resultSet.getString("unit")),
@@ -93,7 +93,7 @@ public class DishesDaoImpl implements DishesDao {
         try (Connection connection = datasource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(queryForDish);
             ){
-            preparedStatement.setInt(1, dish.getDishId());
+            preparedStatement.setLong(1, dish.getDishId());
             preparedStatement.setString(2, dish.getDishName());
             preparedStatement.setInt(3, dish.getPrice());
             preparedStatement.executeUpdate();
@@ -110,8 +110,8 @@ public class DishesDaoImpl implements DishesDao {
                     "quantity = EXCLUDED.quantity ;";
             try (Connection connection = datasource.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(queryForIngredient)){
-                     preparedStatement.setInt(1, dish.getDishId());
-                     preparedStatement.setInt(2, ingredient.getIngredientId());
+                     preparedStatement.setLong(1, dish.getDishId());
+                     preparedStatement.setLong(2, ingredient.getIngredientId());
                      preparedStatement.setDouble(3, ingredient.getQuantity());
                      preparedStatement.executeUpdate();
             }catch (SQLException e){

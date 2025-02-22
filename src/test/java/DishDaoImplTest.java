@@ -31,9 +31,9 @@ public class DishDaoImplTest {
     @Test
     public void testCreateDishesWithoutHotdog() throws SQLException, IllegalAccessException {
         // Prepare a dish without a hotdog
-        Dish dish = new Dish(17, "Burger", 5000, List.of(
-                new Ingredient(1, "Tomato", LocalDateTime.now(), 10, Unit.G),
-                new Ingredient(2, "Cheese", LocalDateTime.now(), 20, Unit.G)
+        Dish dish = new Dish(17L , "Burger", 5000, List.of(
+                new Ingredient(1L, "Tomato", LocalDateTime.now(), 10, Unit.G),
+                new Ingredient(2L, "Cheese", LocalDateTime.now(), 20, Unit.G)
         ));
 
         // Create the dish in the database

@@ -5,14 +5,14 @@ import java.time.LocalDateTime;
 
 @Getter
 public class Ingredient {
-    private int ingredientId;
-    private String ingredientName;
-    private LocalDateTime creationDateAndLastModificationTime;
+    private final Long ingredientId;
+    private final String ingredientName;
+    private final LocalDateTime creationDateAndLastModificationTime;
     private double unitPrice, quantity;
-    private Unit unit;
+    private final Unit unit;
 
 
-    public Ingredient(int ingredientId, String ingredientName, LocalDateTime creationDateAndLastModificationTime, double unitPrice, Unit unit) {
+    public Ingredient(Long ingredientId, String ingredientName, LocalDateTime creationDateAndLastModificationTime, double unitPrice, Unit unit) {
         this.ingredientId = ingredientId;
         this.ingredientName = ingredientName;
         this.creationDateAndLastModificationTime = creationDateAndLastModificationTime;
@@ -20,7 +20,7 @@ public class Ingredient {
         this.unit = unit;
     }
 
-    public Ingredient(int ingredientId, String ingredientName, LocalDateTime creationDateAndLastModificationTime, Unit unit, double unitPrice, double quantity) {
+    public Ingredient(Long ingredientId, String ingredientName, LocalDateTime creationDateAndLastModificationTime, Unit unit, double unitPrice, double quantity) {
         this.ingredientId = ingredientId;
         this.ingredientName = ingredientName;
         this.creationDateAndLastModificationTime = creationDateAndLastModificationTime;

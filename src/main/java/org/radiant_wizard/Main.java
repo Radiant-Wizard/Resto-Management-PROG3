@@ -1,4 +1,6 @@
 package org.radiant_wizard;
+import org.radiant_wizard.db.Datasource;
+
 import java.sql.SQLException;
 
 public class Main {

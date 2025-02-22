@@ -1,17 +1,16 @@
 package org.radiant_wizard.Entity;
 
 import lombok.Getter;
-import lombok.ToString;
 import java.util.List;
 
 @Getter
 public class Dish {
-    private int dishId;
-    private String dishName;
-    private Integer price;
-    private List<Ingredient> ingredients;
+    private final Long dishId;
+    private final String dishName;
+    private final Integer price;
+    private final List<Ingredient> ingredients;
 
-    public Dish(int dishId, String dishName, Integer price, List<Ingredient> ingredients) throws IllegalAccessException {
+    public Dish(Long dishId, String dishName, Integer price, List<Ingredient> ingredients) throws IllegalAccessException {
         if (ingredients == null ){
             throw new IllegalAccessException();
         }
