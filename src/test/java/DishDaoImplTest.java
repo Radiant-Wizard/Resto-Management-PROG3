@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.radiant_wizard.Entity.Dish;
@@ -25,12 +24,12 @@ public class DishDaoImplTest {
 
     @Test
     public void testGetDishes() throws SQLException, IllegalAccessException {
-        Dish dish = dishesDao.getDishesById(16).get(0);
+        Dish dish = dishesDao.getDishesById(16);
         assertEquals(5500, dish.getTotalCostIngredient());
     }
     @Test
     public void testCreateDishesWithoutHotdog() throws SQLException, IllegalAccessException {
-        // Prepare a dish without a hotdog
+        // Prepare a dish
         Dish dish = new Dish(17L , "Burger", 5000, List.of(
                 new Ingredient(1L, "Tomato", LocalDateTime.now(), 10, Unit.G),
                 new Ingredient(2L, "Cheese", LocalDateTime.now(), 20, Unit.G)
@@ -40,10 +39,8 @@ public class DishDaoImplTest {
         dishesDao.createDishes(dish);
 
         // Verify the dish was correctly inserted into the database
-        List<Dish> dishes = dishesDao.getDishesById(17);
-        assertNotNull(dishes);
-        assertFalse(dishes.isEmpty());
-        Dish retrievedDish = dishes.get(0);
+        Dish retrievedDish = dishesDao.getDishesById(17);
+        assertNotNull(retrievedDish);
         assertEquals(17, retrievedDish.getDishId());
         assertEquals("Burger", retrievedDish.getDishName());
         assertEquals(5000, retrievedDish.getPrice());
