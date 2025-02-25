@@ -2,6 +2,7 @@ package org.radiant_wizard.dao;
 
 import org.radiant_wizard.Entity.Dish;
 import org.radiant_wizard.Entity.Ingredient;
+import org.radiant_wizard.Entity.Price;
 import org.radiant_wizard.Entity.Unit;
 import org.radiant_wizard.db.Datasource;
 
@@ -34,85 +35,117 @@ public class DishesDaoImpl implements DishesDao {
         return dishes;
     }
 
-    private List<Ingredient> convertIngredientsTableRows(ResultSet resultSet) throws SQLException {
-        List<Ingredient> ingredients = new ArrayList<>();
+//    private List<Ingredient> convertIngredientsTableRows(ResultSet resultSet, List<Price> priceList) throws SQLException {
+//        List<Ingredient> ingredients = new ArrayList<>();
+//        while (resultSet.next()) {
+//            ingredients.add(new Ingredient(
+//                    resultSet.getLong("ingredientId"),
+//                    resultSet.getString("ingredient_name"),
+//                    resultSet.getObject("last_modification", LocalDateTime.class),
+//                    Unit.valueOf(resultSet.getString("unit")),
+//                    priceList,
+//                    resultSet.getDouble("quantity")
+//            ));
+//        }
+//        return ingredients;
+//    }
+//
+//    private List<Price> convertIngredientsPriceTableRows(ResultSet resultSet) throws SQLException {
+//        List<Price> priceList = new ArrayList<>();
+//        while (resultSet.next()) {
+//            priceList.add(new Price(
+//                    resultSet.getObject("creation_date_and_last_modification_time", LocalDateTime.class),
+//                    resultSet.getDouble("unit_price")
+//                    ));
+//        }
+//        return priceList;
+//    }
 
-        while (resultSet.next()) {
-            ingredients.add(new Ingredient(
-                    resultSet.getLong("ingredientId"),
-                    resultSet.getString("ingredient_name"),
-                    resultSet.getObject("last_modification", LocalDateTime.class),
-                    Unit.valueOf(resultSet.getString("unit")),
-                    resultSet.getInt("unitPrice"),
-                    resultSet.getDouble("quantity")
-            ));
+    private List<Price> getPricesForIngredient(long ingredientId){
+        List<Price> prices = new ArrayList<>();
+        String sqlForPrice =
+                "select ingredient_id, creation_date_and_last_modification_time, unit_price from ingredients where ingredient_id = ?";
+
+        try (Connection connection = datasource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlForPrice)) {
+            preparedStatement.setLong(1, ingredientId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                while (resultSet.next()){
+                    prices.add(new Price(
+                            resultSet.getObject("creation_date_and_last_modification_time", LocalDateTime.class),
+                            resultSet.getDouble("unit_price")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return prices;
+    }
+    private List<Ingredient> getIngredientForDishes(long dishId){
+        List<Ingredient> ingredients = new ArrayList<>();
+        String sqlForIngredient =
+                "select dishId, ingredientId, ingredient_name, last_modification, unit, unitPrice,quantity from see_dishes where dishId = ? ";
+
+        try (Connection connection = datasource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlForIngredient)) {
+            preparedStatement.setLong(1, dishId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                while (resultSet.next()){
+                    long ingredientId = resultSet.getLong("ingredientId");
+                    Ingredient ingredient = new Ingredient(
+                            resultSet.getLong("ingredientId"),
+                            resultSet.getString("ingredient_name"),
+                            resultSet.getObject("last_modification", LocalDateTime.class),
+                            Unit.valueOf(resultSet.getString("unit")),
+                            getPricesForIngredient(ingredientId),
+                            resultSet.getDouble("quantity")
+                    );
+                    ingredients.add(ingredient);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return ingredients;
     }
-
     @Override
     public List<Dish> getDishes(int pageSize, int pageNumber) throws SQLException {
         List<Dish> dishes = new ArrayList<>();
-        String sqlForDishes =
-                "select dish_id, dish_name, dish_price from dishes";
+        String query = "select dish_id, dish_name, dish_price from dishes; ";
 
         try (Connection connection = datasource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sqlForDishes);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-            while (resultSet.next()){
-                long dishId = resultSet.getLong("dish_id");
-                String dishName = resultSet.getString("dish_name");
-                Integer dishPrice = resultSet.getInt("dish_price");
-
-                String sqlForIngredient =
-                        "SELECT dishId, ingredientId, ingredient_name, last_modification, unit, unitPrice, quantity FROM see_dishes WHERE dishId = ?;";
-
-                List<Ingredient> neededIngredients;
-                try (PreparedStatement preparedStatement1 = connection.prepareStatement(sqlForIngredient)){
-                    preparedStatement1.setLong(1, dishId);
-                    try (ResultSet resultSet1 = preparedStatement1.executeQuery()){
-                        neededIngredients = convertIngredientsTableRows(resultSet1);
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()){
+                    while (resultSet.next()){
+                        dishes.add(new Dish(
+                                resultSet.getLong("dish_id"),
+                                resultSet.getString("dish_name"),
+                                resultSet.getInt("dish_price"),
+                                getIngredientForDishes(resultSet.getLong("dish_id"))
+                        ));
                     }
-                }
-                dishes.add(new Dish(dishId,  dishName, dishPrice, neededIngredients));
-
-            }
-        } catch (IllegalAccessException e) {
+                } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
-
         return dishes;
     }
 
     @Override
-    public Dish getDishesById(int dishId) throws SQLException, IllegalAccessException {
-        List<Ingredient> neededIngredients;
-        Dish dishes;
-        String sqlForIngredient =
-                "select dishId, ingredientId, ingredient_name, last_modification, unit, unitPrice,quantity from see_dishes where dishId = ? ";
+    public Dish getDishesById(long dishId) throws SQLException, IllegalAccessException {
+        Dish dish;
         String sqlForDishes =
                 "select dish_id, dish_name, dish_price from dishes where dish_id = ?";
 
         try (Connection connection = datasource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sqlForIngredient)
-        ) {
-            preparedStatement.setInt(1, dishId);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                neededIngredients = convertIngredientsTableRows(resultSet);
-            }
-        }
-
-        try (Connection connection = datasource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlForDishes)
         ) {
-            preparedStatement.setInt(1, dishId);
-
+            preparedStatement.setLong(1, dishId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                dishes = convertDishesTableRows(resultSet, neededIngredients).getFirst();
+                dish = convertDishesTableRows(resultSet, getIngredientForDishes(dishId)).getFirst();
             }
         }
-
-        return dishes;
+        return dish;
     }
 
     @Override

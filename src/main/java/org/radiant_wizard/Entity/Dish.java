@@ -1,6 +1,8 @@
 package org.radiant_wizard.Entity;
 
 import lombok.Getter;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -22,16 +24,25 @@ public class Dish {
     }
 
 
-    public double getTotalCostIngredient(){
-        List<Ingredient> ingredientList = this.ingredients;
+    public double getTotalCostIngredient(LocalDateTime dateTime){
+        List<Ingredient> ingredients = this.ingredients;
+        LocalDateTime now = LocalDateTime.now();
         double cost = 0;
 
-        for (Ingredient ingredient : ingredientList){
-            cost += (ingredient.getUnitPrice() * ingredient.getQuantity()) ;
+
+        for (Ingredient ingredient : ingredients){
+            Double nearestValue = ingredient.getNearestPrice(dateTime).getValue();
+            cost += (ingredient.getQuantity() * nearestValue);
         }
         return cost;
     }
 
+    public double getGrossMargin(LocalDateTime localDateTime){
+        double totalProductionCost = getTotalCostIngredient(localDateTime);
+        double salePrice = this.price;
+
+        return totalProductionCost - salePrice ;
+    }
     @Override
     public String toString() {
         return "Dish {\n" +

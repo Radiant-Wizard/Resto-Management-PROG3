@@ -1,6 +1,7 @@
 create view see_dishes as SELECT
        d.dish_name AS dish,
        d.dish_id as dishId,
+       d.dish_price as dishPrice,
        i.ingredient_id as ingredientId,
        i.ingredient_name AS ingredient_name,
        i.creation_date_and_last_modification_time as last_modification,

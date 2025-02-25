@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c533c43-0ae4-4d54-a4c4-f8eed4549eaa" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Price.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Dish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/DishIngredient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Ingredient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/DishDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DishDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/views/dish_ingredient_table_view.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/views/dish_ingredient_table_view.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

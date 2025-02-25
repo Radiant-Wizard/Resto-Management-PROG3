@@ -1,14 +1,12 @@
 package org.radiant_wizard.dao;
 
 import org.radiant_wizard.Entity.Ingredient;
+import org.radiant_wizard.Entity.Price;
 import org.radiant_wizard.Entity.Unit;
 import org.radiant_wizard.db.Criteria;
 import org.radiant_wizard.db.Datasource;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ public class IngredientDaoImpl implements IngredientDao{
         this.datasource = datasource;
     }
 
-    private List<Ingredient> convertIngredientsTableRows(ResultSet resultSet) throws SQLException {
+    private List<Ingredient> convertIngredientsTableRows(ResultSet resultSet, List<Price> priceList) throws SQLException {
         List<Ingredient> ingredients = new ArrayList<>();
 
         while (resultSet.next()) {
@@ -28,17 +26,30 @@ public class IngredientDaoImpl implements IngredientDao{
                     resultSet.getLong("ingredient_id"),
                     resultSet.getString("ingredient_name"),
                     resultSet.getObject("creation_date_and_last_modification_time", LocalDateTime.class),
-                    resultSet.getInt("unit_price"),
+                    priceList,
                     Unit.valueOf(resultSet.getString("unit"))
                     ));
         }
         return ingredients;
     }
+    private List<Price> convertIngredientsPriceTableRows(ResultSet resultSet) throws SQLException {
+        List<Price> priceList = new ArrayList<>();
+        while (resultSet.next()) {
+            priceList.add(new Price(
+                    resultSet.getObject("creation_date_and_last_modification_time", LocalDateTime.class),
+                    resultSet.getDouble("unit_price")
+            ));
+        }
+        return priceList;
+    }
     @Override
     public List<Ingredient> getIngredientByCriteria(List<Criteria> criteriaList, String orderBy, Boolean ascending, Integer pageSize, Integer pageNumber) throws SQLException {
         List<Ingredient> ingredients;
+        List<Price> priceList;
         String sql =
             "SELECT ingredient_id, ingredient_name, creation_date_and_last_modification_time, unit_price, unit from ingredients where 1=1";
+        String sqlForPrices =
+                " SELECT ingredient_id, creation_date_and_last_modification_time, unit_price FROM ingredients WHERE ingredient_id = ?;";
 
         for (Criteria criteria : criteriaList){
             if (criteria.getColumnName().equals("ingredient_name")){
@@ -60,7 +71,14 @@ public class IngredientDaoImpl implements IngredientDao{
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)
         ) {
-            ingredients = convertIngredientsTableRows(resultSet);
+            try (PreparedStatement preparedStatementPrice = connection.prepareStatement(sqlForPrices)) {
+                preparedStatementPrice.setLong(1, resultSet.getLong("ingredient_id"));
+                try (ResultSet resultSetPrice = preparedStatementPrice.executeQuery()) {
+                    priceList = convertIngredientsPriceTableRows(resultSetPrice);
+                }
+            }
+
+            ingredients = convertIngredientsTableRows(resultSet, priceList);
         }
         return ingredients;
     }
