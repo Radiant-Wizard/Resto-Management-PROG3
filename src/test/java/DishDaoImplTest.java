@@ -1,10 +1,12 @@
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.radiant_wizard.Entity.Dish;
 import org.radiant_wizard.Entity.Ingredient;
 import org.radiant_wizard.Entity.Price;
 import org.radiant_wizard.Entity.Unit;
 import org.radiant_wizard.dao.DishesDaoImpl;
+import org.radiant_wizard.db.Criteria;
 import org.radiant_wizard.db.Datasource;
 
 import java.sql.SQLException;
@@ -27,6 +29,19 @@ public class DishDaoImplTest {
     public void testGetDishes() throws SQLException, IllegalAccessException {
         Dish dish = dishesDao.getDishesById(16);
         assertEquals(5500, dish.getTotalCostIngredient(LocalDateTime.now()));
+    }
+
+    @Test
+    @DisplayName("test if the getDishByCriteria work fine")
+    public void testGetByCriteria() throws SQLException {
+        List<Criteria> criteriaList = List.of(
+                new Criteria("hotdog", "dish_name"),
+                new Criteria("11", "dish_id")
+        );
+        List<Dish> dishes = dishesDao.getDishes(criteriaList, "dish_name", true, 5, 1);
+
+
+        assertEquals(5, dishes.size());
     }
     @Test
     public void testCreateDishesWithoutHotdog() throws SQLException, IllegalAccessException {

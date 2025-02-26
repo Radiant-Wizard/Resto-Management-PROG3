@@ -76,12 +76,12 @@ public class IngredientDaoImpl implements IngredientDao {
             if (criteria.getColumnName().equals("ingredient_name")) {
                 sql += " AND " + criteria.getColumnName() + " ilike '%" + criteria.getColumnValue().toString() + "%'";
             } else {
-                sql += " AND " + criteria.getColumnName() + " = '" + criteria.getColumnValue().toString() + "'";
+                sql += " OR " + criteria.getColumnName() + " = '" + criteria.getColumnValue().toString() + "'";
             }
         }
 
         if (orderBy != null && !orderBy.isEmpty()) {
-            sql += " ORDER BY " + orderBy + (ascending ? "ASC" : "DESC");
+            sql += " ORDER BY " + orderBy + (ascending ? " ASC " : " DESC ");
         }
         if (pageSize != null && pageNumber != null) {
             int offset = pageSize * (pageNumber - 1);
@@ -89,8 +89,8 @@ public class IngredientDaoImpl implements IngredientDao {
         }
 
         try (Connection connection = datasource.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql)
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()
         ) {
             while (resultSet.next()){
                 long ingredientId = resultSet.getLong("ingredient_id");

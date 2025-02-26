@@ -4,6 +4,7 @@ import org.radiant_wizard.Entity.Dish;
 import org.radiant_wizard.Entity.Ingredient;
 import org.radiant_wizard.Entity.Price;
 import org.radiant_wizard.Entity.Unit;
+import org.radiant_wizard.db.Criteria;
 import org.radiant_wizard.db.Datasource;
 
 import java.sql.Connection;
@@ -110,9 +111,25 @@ public class DishesDaoImpl implements DishesDao {
         return ingredients;
     }
     @Override
-    public List<Dish> getDishes(int pageSize, int pageNumber) throws SQLException {
+    public List<Dish> getDishes(List<Criteria> criteriaList, String orderBy, Boolean ascending, Integer pageSize, Integer pageNumber) throws SQLException {
         List<Dish> dishes = new ArrayList<>();
-        String query = "select dish_id, dish_name, dish_price from dishes; ";
+        String query = "select dish_id, dish_name, dish_price from dishes where 1=1 ";
+
+        for (Criteria criteria : criteriaList) {
+            if (criteria.getColumnName().equals("dish_name")) {
+                query += " OR " + criteria.getColumnName() + " ilike '%" + criteria.getColumnValue().toString() + "%'";
+            } else {
+                query += " OR " + criteria.getColumnName() + " = '" + criteria.getColumnValue().toString() + "'";
+            }
+        }
+
+        if (orderBy != null && !orderBy.isEmpty()) {
+            query += " ORDER BY " + orderBy + (ascending ? " ASC " : " DESC ");
+        }
+        if (pageSize != null && pageNumber != null) {
+            int offset = pageSize * (pageNumber - 1);
+            query += " LIMIT " + pageSize + " OFFSET " + offset;
+        }
 
         try (Connection connection = datasource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
