@@ -1,4 +1,4 @@
-INSERT INTO ingredients (ingredient_id, ingredient_name, creation_date_and_last_modification_time, unit_price, unit) VALUES
+INSERT INTO ingredients (ingredient_id, ingredient_name, last_modification, unit_price, unit) VALUES
 (1, 'Tomato', NOW(), 800, 'G'),
 (2, 'Chicken Breast', NOW(), 5000, 'G'),
 (3, 'Lettuce', NOW(), 1000, 'G'),
@@ -9,12 +9,11 @@ INSERT INTO ingredients (ingredient_id, ingredient_name, creation_date_and_last_
 (8, 'Cheese', NOW(), 15000, 'G'),
 (9, 'Salmon', NOW(), 25000, 'G'),
 (10, 'Milk', NOW(), 4000, 'L'),
-(11, 'Bread', NOW(), 1500, 'U'),
+(11, 'Bread', NOW(), 1000, 'U'),
 (12, 'Rice', NOW(), 3000, 'G'),
 (13, 'Lentils', NOW(), 3500, 'G'),
 (14, 'Pasta', NOW(), 2000, 'G'),
 (15, 'BBQ Sauce', NOW(), 6000, 'L'),
--- Adding new ingredients
-(16, 'Sausage', NOW(), 500, 'G'),
-(17, 'Oil', NOW(), 2000, 'L'),
-(18, 'Egg', NOW(), 500, 'U');
+(16, 'Sausage', NOW(), 20, 'G'),
+(17, 'Oil', NOW(), 10000, 'L'),
+(18, 'Egg', NOW(), 1000, 'U');

@@ -33,6 +33,7 @@ public class Dish {
         for (Ingredient ingredient : ingredients){
             Double nearestValue = ingredient.getNearestPrice(dateTime).getValue();
             cost += (ingredient.getQuantity() * nearestValue);
+//            System.out.println(ingredient.getIngredientName() + " : " + ingredient.getQuantity() + " : " + (ingredient.getQuantity() * nearestValue));
         }
         return cost;
     }

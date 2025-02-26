@@ -64,7 +64,7 @@ public class DishesDaoImpl implements DishesDao {
     private List<Price> getPricesForIngredient(long ingredientId){
         List<Price> prices = new ArrayList<>();
         String sqlForPrice =
-                "select ingredient_id, creation_date_and_last_modification_time, unit_price from ingredients where ingredient_id = ?";
+                "select ingredient_id, last_modification, unit_price from ingredients where ingredient_id = ?";
 
         try (Connection connection = datasource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sqlForPrice)) {
@@ -72,7 +72,7 @@ public class DishesDaoImpl implements DishesDao {
             try (ResultSet resultSet = preparedStatement.executeQuery()){
                 while (resultSet.next()){
                     prices.add(new Price(
-                            resultSet.getObject("creation_date_and_last_modification_time", LocalDateTime.class),
+                            resultSet.getObject("last_modification", LocalDateTime.class),
                             resultSet.getDouble("unit_price")
                     ));
                 }
@@ -85,16 +85,16 @@ public class DishesDaoImpl implements DishesDao {
     private List<Ingredient> getIngredientForDishes(long dishId){
         List<Ingredient> ingredients = new ArrayList<>();
         String sqlForIngredient =
-                "select dishId, ingredientId, ingredient_name, last_modification, unit, unitPrice,quantity from see_dishes where dishId = ? ";
+                "select dish_id, ingredient_id, ingredient_name, last_modification, unit, unit_price,quantity from dishes_with_ingredients where dish_id = ? ";
 
         try (Connection connection = datasource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sqlForIngredient)) {
             preparedStatement.setLong(1, dishId);
             try (ResultSet resultSet = preparedStatement.executeQuery()){
                 while (resultSet.next()){
-                    long ingredientId = resultSet.getLong("ingredientId");
+                    long ingredientId = resultSet.getLong("ingredient_id");
                     Ingredient ingredient = new Ingredient(
-                            resultSet.getLong("ingredientId"),
+                            resultSet.getLong("ingredient_id"),
                             resultSet.getString("ingredient_name"),
                             resultSet.getObject("last_modification", LocalDateTime.class),
                             Unit.valueOf(resultSet.getString("unit")),
