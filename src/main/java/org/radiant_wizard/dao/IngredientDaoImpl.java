@@ -1,8 +1,6 @@
 package org.radiant_wizard.dao;
 
-import org.radiant_wizard.Entity.Ingredient;
-import org.radiant_wizard.Entity.Price;
-import org.radiant_wizard.Entity.Unit;
+import org.radiant_wizard.Entity.*;
 import org.radiant_wizard.db.Criteria;
 import org.radiant_wizard.db.Datasource;
 
@@ -12,36 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientDaoImpl implements IngredientDao {
-    Datasource datasource = new Datasource();
+    Datasource datasource;
 
     public IngredientDaoImpl(Datasource datasource) {
         this.datasource = datasource;
-    }
-
-    private List<Ingredient> convertIngredientsTableRows(ResultSet resultSet, List<Price> priceList) throws SQLException {
-        List<Ingredient> ingredients = new ArrayList<>();
-
-        while (resultSet.next()) {
-            ingredients.add(new Ingredient(
-                    resultSet.getLong("ingredient_id"),
-                    resultSet.getString("ingredient_name"),
-                    resultSet.getObject("creation_date_and_last_modification_time", LocalDateTime.class),
-                    priceList,
-                    Unit.valueOf(resultSet.getString("unit"))
-            ));
-        }
-        return ingredients;
-    }
-
-    private List<Price> convertIngredientsPriceTableRows(ResultSet resultSet) throws SQLException {
-        List<Price> priceList = new ArrayList<>();
-        while (resultSet.next()) {
-            priceList.add(new Price(
-                    resultSet.getObject("last_modification", LocalDateTime.class),
-                    resultSet.getDouble("unit_price")
-            ));
-        }
-        return priceList;
     }
 
     private List<Price> getPriceForIngredient(long ingredientId) {
@@ -65,45 +37,83 @@ public class IngredientDaoImpl implements IngredientDao {
         return priceList;
     }
 
+    private List<StockMovement> getStockForIngredient(long ingredientId) {
+        List<StockMovement> stockList = new ArrayList<>();
+        String sql = "SELECT ingredient_id, movement_date, movement_type, quantity, unit from stock_movement where ingredient_id = ?";
+
+        try (Connection connection = datasource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setLong(1, ingredientId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    stockList.add(new StockMovement(
+                            ingredientId,
+                            resultSet.getDouble("quantity"),
+                            Unit.valueOf(resultSet.getString("unit")),
+                            MovementType.valueOf(resultSet.getString("movement_type")),
+                            resultSet.getObject("movement_date", LocalDateTime.class)
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return stockList;
+    }
+
+
     @Override
     public List<Ingredient> getIngredientByCriteria(List<Criteria> criteriaList, String orderBy, Boolean ascending, Integer pageSize, Integer pageNumber) throws SQLException {
         List<Ingredient> ingredients = new ArrayList<>();
 
-        String sql =
+        String query =
                 "SELECT ingredient_id, ingredient_name, last_modification, unit_price, unit from ingredients where 1=1";
 
         for (Criteria criteria : criteriaList) {
-            if (criteria.getColumnName().equals("ingredient_name")) {
-                sql += " AND " + criteria.getColumnName() + " ilike '%" + criteria.getColumnValue().toString() + "%'";
+            String columnName = criteria.getColumnName();
+            Object columnValue = criteria.getColumnValue();
+            String operator = criteria.getOperator();
+            LogicalOperator logicalOperator = criteria.getLogicalOperator();
+
+            query += " " + logicalOperator.toString() + " " ;
+            if ("BETWEEN".equalsIgnoreCase(operator)){
+                Object secondValue = criteria.getSecondValue();
+                query += String.format(" %s BETWEEN '%s' AND '%s' ", columnName, columnValue, secondValue);
+            }else if("LIKE".equalsIgnoreCase(operator)){
+                query += String.format(" %s ILIKE '%%s%%' ", columnName, columnValue);
             } else {
-                sql += " OR " + criteria.getColumnName() + " = '" + criteria.getColumnValue().toString() + "'";
+                query += String.format(" %s '%s' '%s' ", columnName, operator, columnValue);
             }
         }
 
         if (orderBy != null && !orderBy.isEmpty()) {
-            sql += " ORDER BY " + orderBy + (ascending ? " ASC " : " DESC ");
+            query += " ORDER BY " + orderBy + (ascending ? " ASC " : " DESC ");
         }
         if (pageSize != null && pageNumber != null) {
             int offset = pageSize * (pageNumber - 1);
-            sql += " LIMIT " + pageSize + " OFFSET " + offset;
+            query += " LIMIT " + pageSize + " OFFSET " + offset;
         }
 
         try (Connection connection = datasource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql);
+             PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()
         ) {
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 long ingredientId = resultSet.getLong("ingredient_id");
 
                 ingredients.add(new Ingredient(
                         resultSet.getLong("ingredient_id"),
                         resultSet.getString("ingredient_name"),
                         resultSet.getObject("last_modification", LocalDateTime.class),
+                        Unit.valueOf(resultSet.getString("unit")),
                         getPriceForIngredient(ingredientId),
-                        Unit.valueOf(resultSet.getString("unit"))
+                        getStockForIngredient(ingredientId)
                 ));
             }
         }
         return ingredients;
     }
+
+
+
 }

@@ -1,9 +1,6 @@
 package org.radiant_wizard.dao;
 
-import org.radiant_wizard.Entity.Dish;
-import org.radiant_wizard.Entity.Ingredient;
-import org.radiant_wizard.Entity.Price;
-import org.radiant_wizard.Entity.Unit;
+import org.radiant_wizard.Entity.*;
 import org.radiant_wizard.db.Criteria;
 import org.radiant_wizard.db.Datasource;
 
@@ -62,16 +59,16 @@ public class DishesDaoImpl implements DishesDao {
 //        return priceList;
 //    }
 
-    private List<Price> getPricesForIngredient(long ingredientId){
+    private List<Price> getPricesForIngredient(long ingredientId) {
         List<Price> prices = new ArrayList<>();
         String sqlForPrice =
                 "select ingredient_id, last_modification, unit_price from ingredients where ingredient_id = ?";
 
         try (Connection connection = datasource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlForPrice)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlForPrice)) {
             preparedStatement.setLong(1, ingredientId);
-            try (ResultSet resultSet = preparedStatement.executeQuery()){
-                while (resultSet.next()){
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     prices.add(new Price(
                             resultSet.getObject("last_modification", LocalDateTime.class),
                             resultSet.getDouble("unit_price")
@@ -83,16 +80,17 @@ public class DishesDaoImpl implements DishesDao {
         }
         return prices;
     }
-    private List<Ingredient> getIngredientForDishes(long dishId){
+
+    private List<Ingredient> getIngredientForDishes(long dishId) {
         List<Ingredient> ingredients = new ArrayList<>();
         String sqlForIngredient =
                 "select dish_id, ingredient_id, ingredient_name, last_modification, unit, unit_price,quantity from dishes_with_ingredients where dish_id = ? ";
 
         try (Connection connection = datasource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlForIngredient)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlForIngredient)) {
             preparedStatement.setLong(1, dishId);
-            try (ResultSet resultSet = preparedStatement.executeQuery()){
-                while (resultSet.next()){
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     long ingredientId = resultSet.getLong("ingredient_id");
                     Ingredient ingredient = new Ingredient(
                             resultSet.getLong("ingredient_id"),
@@ -110,16 +108,26 @@ public class DishesDaoImpl implements DishesDao {
         }
         return ingredients;
     }
+
     @Override
     public List<Dish> getDishes(List<Criteria> criteriaList, String orderBy, Boolean ascending, Integer pageSize, Integer pageNumber) throws SQLException {
         List<Dish> dishes = new ArrayList<>();
         String query = "select dish_id, dish_name, dish_price from dishes where 1=1 ";
 
         for (Criteria criteria : criteriaList) {
-            if (criteria.getColumnName().equals("dish_name")) {
-                query += " OR " + criteria.getColumnName() + " ilike '%" + criteria.getColumnValue().toString() + "%'";
+            String columnName = criteria.getColumnName();
+            Object columnValue = criteria.getColumnValue();
+            String operator = criteria.getOperator();
+            LogicalOperator logicalOperator = criteria.getLogicalOperator();
+
+            query += " " + logicalOperator.toString() + " ";
+            if ("BETWEEN".equalsIgnoreCase(operator)) {
+                Object secondValue = criteria.getSecondValue();
+                query += String.format(" %s BETWEEN '%s' AND '%s' ", columnName, columnValue, secondValue);
+            } else if ("LIKE".equalsIgnoreCase(operator)) {
+                query += String.format(" %s ILIKE '%%s%%' ", columnName, columnValue);
             } else {
-                query += " OR " + criteria.getColumnName() + " = '" + criteria.getColumnValue().toString() + "'";
+                query += String.format(" %s '%s' '%s' ", columnName, operator, columnValue);
             }
         }
 
@@ -133,16 +141,16 @@ public class DishesDaoImpl implements DishesDao {
 
         try (Connection connection = datasource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
-             ResultSet resultSet = preparedStatement.executeQuery()){
-                    while (resultSet.next()){
-                        dishes.add(new Dish(
-                                resultSet.getLong("dish_id"),
-                                resultSet.getString("dish_name"),
-                                resultSet.getInt("dish_price"),
-                                getIngredientForDishes(resultSet.getLong("dish_id"))
-                        ));
-                    }
-                } catch (IllegalAccessException e) {
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                dishes.add(new Dish(
+                        resultSet.getLong("dish_id"),
+                        resultSet.getString("dish_name"),
+                        resultSet.getInt("dish_price"),
+                        getIngredientForDishes(resultSet.getLong("dish_id"))
+                ));
+            }
+        } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
         return dishes;
@@ -166,41 +174,61 @@ public class DishesDaoImpl implements DishesDao {
     }
 
     @Override
-    public void createDishes(Dish dish) throws SQLException {
-        String queryForDish = "INSERT INTO dishes (dish_id, dish_name, dish_price) VALUES(?, ?, ?)" +
-                "ON CONFLICT (dish_id)" +
-                "DO update set " +
-                "dish_name = EXCLUDED.dish_name," +
-                "dish_price = EXCLUDED.dish_price;";
+    public void saveDishes(List<Dish> dishList) throws SQLException {
+        try (Connection connection = datasource.getConnection()) {
+            String queryForDish = "INSERT INTO dishes (dish_id, dish_name, dish_price) VALUES(?, ?, ?)" +
+                    "ON CONFLICT (dish_id)" +
+                    "DO update set " +
+                    "dish_name = EXCLUDED.dish_name," +
+                    "dish_price = EXCLUDED.dish_price;";
 
 
-        try (Connection connection = datasource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(queryForDish);
-        ) {
-            preparedStatement.setLong(1, dish.getDishId());
-            preparedStatement.setString(2, dish.getDishName());
-            preparedStatement.setInt(3, dish.getPrice());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new SQLException(e);
-        }
-
-        for (Ingredient ingredient : dish.getIngredients()) {
-            String queryForIngredient = "insert into dish_ingredients (dish_id, ingredient_id, quantity) values (?, ?, ?)" +
-                    "ON CONFLICT (dish_id, ingredient_id)" +
-                    "DO UPDATE SET " +
-                    "dish_id = EXCLUDED.dish_id," +
-                    "ingredient_id = EXCLUDED.ingredient_id," +
-                    "quantity = EXCLUDED.quantity ;";
-            try (Connection connection = datasource.getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(queryForIngredient)) {
-                preparedStatement.setLong(1, dish.getDishId());
-                preparedStatement.setLong(2, ingredient.getIngredientId());
-                preparedStatement.setDouble(3, ingredient.getQuantity());
-                preparedStatement.executeUpdate();
+            try (PreparedStatement preparedStatement = connection.prepareStatement(queryForDish);
+            ) {
+                for (Dish dish : dishList) {
+                    preparedStatement.setLong(1, dish.getDishId());
+                    preparedStatement.setString(2, dish.getDishName());
+                    preparedStatement.setInt(3, dish.getPrice());
+                    preparedStatement.addBatch();
+                }
+                preparedStatement.executeBatch();
             } catch (SQLException e) {
                 throw new SQLException(e);
             }
+
+            for (Dish dish : dishList) {
+                for (Ingredient ingredient : dish.getIngredients()) {
+                    String queryForIngredient = "insert into dish_ingredients (dish_id, ingredient_id, quantity) values (?, ?, ?)" +
+                            "ON CONFLICT (dish_id, ingredient_id)" +
+                            "DO UPDATE SET " +
+                            "dish_id = EXCLUDED.dish_id," +
+                            "ingredient_id = EXCLUDED.ingredient_id," +
+                            "quantity = EXCLUDED.quantity ;";
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(queryForIngredient)) {
+                        preparedStatement.setLong(1, dish.getDishId());
+                        preparedStatement.setLong(2, ingredient.getIngredientId());
+                        preparedStatement.setDouble(3, ingredient.getQuantity());
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        throw new SQLException(e);
+                    }
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public void deleteDish(long dishId) {
+        String queryForDelete = "DELETE FROM dishes where dish_id = ?";
+
+        try (Connection connection = datasource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(queryForDelete)
+        ) {
+            preparedStatement.setLong(1, dishId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

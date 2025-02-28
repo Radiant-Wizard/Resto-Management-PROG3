@@ -9,5 +9,6 @@ import java.util.List;
 public interface DishesDao {
     List<Dish> getDishes(List<Criteria> criteriaList, String orderBy, Boolean ascending, Integer pageSize, Integer pageNumber) throws SQLException;
     Dish getDishesById(long dishId) throws SQLException, IllegalAccessException;
-    void createDishes(Dish dish) throws SQLException;
+    void saveDishes(List<Dish> dish) throws SQLException;
+    void deleteDish(long dishId);
 }

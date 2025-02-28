@@ -27,6 +27,6 @@ public class IngredientDaoImplTest {
 
         List<Ingredient> ingredients = ingredientDao.getIngredientByCriteria(criteriaList, null, null, 2,  1);
 
-        Assertions.assertEquals(1, ingredients.size());
+        Assertions.assertEquals(2, ingredients.size());
     }
 }

@@ -48,6 +48,7 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/stock_movement.sql" connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" session-id="MAIN" current-schema="gastro_mng" />
     <mapping file-url="file://$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/dish_ingredients_table_creation.sql" connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" session-id="MAIN" current-schema="public" />
     <mapping file-url="file://$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/dish_table_creation.sql" connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" session-id="MAIN" current-schema="public" />
     <mapping file-url="file://$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/views/dish_ingredient_table_view.sql" connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" session-id="MAIN" current-schema="gastro_mng" />
