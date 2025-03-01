@@ -82,7 +82,7 @@ public class IngredientDaoImpl implements IngredientDao {
             }else if("LIKE".equalsIgnoreCase(operator)){
                 query += String.format(" %s ILIKE '%%s%%' ", columnName, columnValue);
             } else {
-                query += String.format(" %s '%s' '%s' ", columnName, operator, columnValue);
+                query += String.format(" %s %s %s ", columnName, operator, columnValue);
             }
         }
 

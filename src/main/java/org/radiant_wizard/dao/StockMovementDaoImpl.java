@@ -25,7 +25,7 @@ public class StockMovementDaoImpl implements  StockMovementDao{
                     Unit.valueOf(resultSet.getString("unit")),
                     MovementType.valueOf(resultSet.getString("movement_type")),
                     resultSet.getObject("movement_date", LocalDateTime.class)
-            ));
+                    ));
         }
         return stockMovementList;
     }
@@ -71,8 +71,7 @@ public class StockMovementDaoImpl implements  StockMovementDao{
     @Override
     public void saveNewStockMovements(List<StockMovement> stockMovementList) throws SQLException {
         try (Connection connection = datasource.getConnection()){
-            connection.setAutoCommit(false);
-            String query = "INSERT INTO stock_movement (ingredient_id, movement_date, movement_type, quantity, unit) VALUES (?, ?, ?, ?, ?::measurement_unit)";
+            String query = "INSERT INTO stock_movement (ingredient_id, movement_date, movement_type, quantity, unit) VALUES (?, ?, ?::stock_movement_type, ?, ?::measurement_unit)";
 
             try ( PreparedStatement preparedStatement = connection.prepareStatement(query)){
                 for (StockMovement stockMovement : stockMovementList){
@@ -84,13 +83,25 @@ public class StockMovementDaoImpl implements  StockMovementDao{
                     preparedStatement.addBatch();
                 }
                 preparedStatement.executeBatch();
-                connection.commit();
             }catch (SQLException e){
-                connection.rollback();
                 throw new SQLException(e);
-            } finally {
-                connection.setAutoCommit(true);
             }
         }
     }
+
+    @Override
+    public void deleteStockMovements(long stockId) {
+        String queryForDelete = "DELETE FROM  stock_movement where  stock_movement_id = ?";
+
+        try (Connection connection = datasource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(queryForDelete)
+        ) {
+            preparedStatement.setLong(1, stockId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

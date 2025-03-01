@@ -1,6 +1,7 @@
 package org.radiant_wizard.Entity;
 
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -8,12 +9,13 @@ import java.util.Comparator;
 import java.util.List;
 
 @Getter
+@ToString
 public class Ingredient {
     private final Long ingredientId;
     private final String ingredientName;
     private final LocalDateTime lastModification;
     private final Unit unit;
-    private double quantity;
+    private double neededQuantity;
     private final List<Price> unitPrice;
     private List<StockMovement> stockMovements;
 
@@ -27,13 +29,14 @@ public class Ingredient {
         this.stockMovements = stockMovements;
     }
 
-    public Ingredient(Long ingredientId, String ingredientName, LocalDateTime lastModification, Unit unit, List<Price> unitPrice, double quantity) {
+    public Ingredient(Long ingredientId, String ingredientName, LocalDateTime lastModification, Unit unit, List<Price> unitPrice, List<StockMovement> stockMovements, double neededQuantity) {
         this.ingredientId = ingredientId;
         this.ingredientName = ingredientName;
         this.lastModification = lastModification;
         this.unit = unit;
         this.unitPrice = unitPrice;
-        this.quantity = quantity;
+        this.neededQuantity = neededQuantity;
+        this.stockMovements = stockMovements;
     }
 
     public Price getNearestPrice(LocalDateTime localDateTime) {

@@ -3,6 +3,8 @@ package org.radiant_wizard.Entity;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -32,8 +34,8 @@ public class Dish {
 
         for (Ingredient ingredient : ingredients){
             Double nearestValue = ingredient.getNearestPrice(dateTime).getValue();
-            cost += (ingredient.getQuantity() * nearestValue);
-//            System.out.println(ingredient.getIngredientName() + " : " + ingredient.getQuantity() + " : " + (ingredient.getQuantity() * nearestValue));
+            cost += (ingredient.getNeededQuantity() * nearestValue);
+//            System.out.println(ingredient.getIngredientName() + " : " + ingredient.getNeededQuantity() + " : " + (ingredient.getNeededQuantity() * nearestValue));
         }
         return cost;
     }
@@ -44,6 +46,21 @@ public class Dish {
 
         return totalProductionCost - salePrice ;
     }
+
+    public Double getAvailableQuantity(LocalDateTime localDateTime) {
+        LocalDateTime usedDate = localDateTime == null ? LocalDateTime.now() : localDateTime;
+
+
+        double smallestAvailableDishQuantity = Double.MAX_VALUE;
+        for (Ingredient ingredient : this.ingredients) {
+            double availableDishMade = Math.round(ingredient.getAvailableQuantity(usedDate) / ingredient.getNeededQuantity());
+            if (availableDishMade < smallestAvailableDishQuantity) {
+                smallestAvailableDishQuantity = availableDishMade;
+            }
+        }
+        return smallestAvailableDishQuantity;
+    }
+
     @Override
     public String toString() {
         return "Dish {\n" +

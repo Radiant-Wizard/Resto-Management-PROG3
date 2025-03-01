@@ -8,25 +8,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c533c43-0ae4-4d54-a4c4-f8eed4549eaa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/LogicalOperator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/MovementType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/StockMovement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/stock_movement.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/testdata/insert_stock_movement.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/StockMovementTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Dish.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Ingredient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/StockMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/StockMovement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/Criteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/Criteria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/dish_table_creation.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/dish_table_creation.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/ingredients_table_creation.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/ingredients_table_creation.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/stock_creation.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/testdata/insert_stock_movement.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/testdata/insert_stock_movement.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/DishDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DishDaoImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/IngredientDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IngredientDaoImplTest.java" afterDir="false" />
     </list>
@@ -39,8 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -48,7 +40,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -59,23 +51,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Connection.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DishDaoImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.IngredientDaoImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.Test.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Gastro-Food-Management [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Connection.executor": "Run",
+    "JUnit.DishDaoImplTest.executor": "Run",
+    "JUnit.DishDaoImplTest.testGetAvailable.executor": "Run",
+    "JUnit.DishDaoImplTest.testGetByCriteria.executor": "Run",
+    "JUnit.IngredientDaoImplTest.executor": "Run",
+    "JUnit.StockMovementTest.executor": "Run",
+    "JUnit.StockMovementTest.testStockQuantitiesAfterExits.executor": "Run",
+    "JUnit.Test.executor": "Run",
+    "Maven.Gastro-Food-Management [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
-  <component name="RunManager" selected="JUnit.Test">
+}]]></component>
+  <component name="RunManager" selected="JUnit.DishDaoImplTest.testGetAvailable">
     <configuration name="Connection" type="Application" factoryName="Application">
       <envs>
         <env name="DB_NAME" value="gastro_mng" />
@@ -90,12 +86,63 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DishDaoImplTest.testGetAvailable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Gastro-Food-Management" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DishDaoImplTest" />
+      <option name="METHOD_NAME" value="testGetAvailable" />
+      <option name="TEST_OBJECT" value="method" />
+      <envs>
+        <env name="DB_NAME" value="gastro_mng" />
+        <env name="HOST" value="localhost" />
+        <env name="PORT" value="5432" />
+        <env name="USER_PASSWORD" value="usagi-san" />
+        <env name="USERNAME" value="gastro_manager" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="IngredientDaoImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Gastro-Food-Management" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="IngredientDaoImplTest" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
+      <envs>
+        <env name="DB_NAME" value="gastro_mng" />
+        <env name="HOST" value="localhost" />
+        <env name="PORT" value="5432" />
+        <env name="USER_PASSWORD" value="usagi-san" />
+        <env name="USERNAME" value="gastro_manager" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StockMovementTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Gastro-Food-Management" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StockMovementTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <envs>
+        <env name="DB_NAME" value="gastro_mng" />
+        <env name="HOST" value="localhost" />
+        <env name="PORT" value="5432" />
+        <env name="USER_PASSWORD" value="usagi-san" />
+        <env name="USERNAME" value="gastro_manager" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StockMovementTest.testStockQuantitiesAfterExits" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Gastro-Food-Management" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StockMovementTest" />
+      <option name="METHOD_NAME" value="testStockQuantitiesAfterExits" />
+      <option name="TEST_OBJECT" value="method" />
       <envs>
         <env name="DB_NAME" value="gastro_mng" />
         <env name="HOST" value="localhost" />
@@ -126,13 +173,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Connection" />
+      <item itemvalue="JUnit.DishDaoImplTest.testGetAvailable" />
+      <item itemvalue="JUnit.StockMovementTest.testStockQuantitiesAfterExits" />
+      <item itemvalue="JUnit.StockMovementTest" />
       <item itemvalue="JUnit.IngredientDaoImplTest" />
       <item itemvalue="JUnit.Test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Test" />
+        <item itemvalue="JUnit.DishDaoImplTest.testGetAvailable" />
+        <item itemvalue="JUnit.StockMovementTest.testStockQuantitiesAfterExits" />
+        <item itemvalue="JUnit.StockMovementTest" />
         <item itemvalue="JUnit.IngredientDaoImplTest" />
+        <item itemvalue="JUnit.Test" />
       </list>
     </recent_temporary>
   </component>

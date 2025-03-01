@@ -59,6 +59,30 @@ public class DishesDaoImpl implements DishesDao {
 //        return priceList;
 //    }
 
+    private List<StockMovement> getStockForIngredient(long ingredientId) {
+        List<StockMovement> stockList = new ArrayList<>();
+        String sql = "SELECT ingredient_id, movement_date, movement_type, quantity, unit from stock_movement where ingredient_id = ?";
+
+        try (Connection connection = datasource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setLong(1, ingredientId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    stockList.add(new StockMovement(
+                            ingredientId,
+                            resultSet.getDouble("quantity"),
+                            Unit.valueOf(resultSet.getString("unit")),
+                            MovementType.valueOf(resultSet.getString("movement_type")),
+                            resultSet.getObject("movement_date", LocalDateTime.class)
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return stockList;
+    }
+
     private List<Price> getPricesForIngredient(long ingredientId) {
         List<Price> prices = new ArrayList<>();
         String sqlForPrice =
@@ -81,6 +105,7 @@ public class DishesDaoImpl implements DishesDao {
         return prices;
     }
 
+
     private List<Ingredient> getIngredientForDishes(long dishId) {
         List<Ingredient> ingredients = new ArrayList<>();
         String sqlForIngredient =
@@ -98,6 +123,7 @@ public class DishesDaoImpl implements DishesDao {
                             resultSet.getObject("last_modification", LocalDateTime.class),
                             Unit.valueOf(resultSet.getString("unit")),
                             getPricesForIngredient(ingredientId),
+                            getStockForIngredient(ingredientId),
                             resultSet.getDouble("quantity")
                     );
                     ingredients.add(ingredient);
@@ -127,7 +153,7 @@ public class DishesDaoImpl implements DishesDao {
             } else if ("LIKE".equalsIgnoreCase(operator)) {
                 query += String.format(" %s ILIKE '%%s%%' ", columnName, columnValue);
             } else {
-                query += String.format(" %s '%s' '%s' ", columnName, operator, columnValue);
+                query += String.format(" %s %s %s ", columnName, operator, columnValue);
             }
         }
 
@@ -207,7 +233,7 @@ public class DishesDaoImpl implements DishesDao {
                     try (PreparedStatement preparedStatement = connection.prepareStatement(queryForIngredient)) {
                         preparedStatement.setLong(1, dish.getDishId());
                         preparedStatement.setLong(2, ingredient.getIngredientId());
-                        preparedStatement.setDouble(3, ingredient.getQuantity());
+                        preparedStatement.setDouble(3, ingredient.getNeededQuantity());
                         preparedStatement.executeUpdate();
                     } catch (SQLException e) {
                         throw new SQLException(e);

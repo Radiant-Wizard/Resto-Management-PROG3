@@ -8,6 +8,7 @@ import org.radiant_wizard.db.Datasource;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,12 +51,19 @@ public class DishDaoImplTest {
     }
 
     @Test
+    public void testGetAvailable() throws SQLException, IllegalAccessException {
+        LocalDateTime testDate = LocalDateTime.of(2025, 2, 24, 12, 0);
+
+        Dish hotdog = dishesDao.getDishesById(16);
+
+        assertEquals(30, hotdog.getAvailableQuantity(testDate));
+    }
+    @Test
     @DisplayName("test if the getDishByCriteria work fine")
     public void testGetByCriteria() throws SQLException {
-        List<Criteria> criteriaList = List.of(
-                new Criteria("hotdog", "dish_name"),
-                new Criteria("11", "dish_id")
-        );
+        List<Criteria> criteriaList = new ArrayList<>();
+        criteriaList.add(new Criteria("dish_name", "hotdog", "LIKE", LogicalOperator.AND));
+        criteriaList.add(new Criteria("dish_price", 10, ">", LogicalOperator.AND));
         List<Dish> dishes = dishesDao.getDishes(criteriaList, "dish_name", true, 5, 1);
 
 
