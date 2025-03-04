@@ -8,19 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c533c43-0ae4-4d54-a4c4-f8eed4549eaa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/StockMovementTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Dish.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Ingredient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/StockMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/StockMovement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/testdata/insert_stock_movement.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/testdata/insert_stock_movement.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/DishDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DishDaoImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/IngredientDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IngredientDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/StockMovementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/StockMovementTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,27 +44,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Connection.executor": "Run",
-    "JUnit.DishDaoImplTest.executor": "Run",
-    "JUnit.DishDaoImplTest.testGetAvailable.executor": "Run",
-    "JUnit.DishDaoImplTest.testGetByCriteria.executor": "Run",
-    "JUnit.IngredientDaoImplTest.executor": "Run",
-    "JUnit.StockMovementTest.executor": "Run",
-    "JUnit.StockMovementTest.testStockQuantitiesAfterExits.executor": "Run",
-    "JUnit.Test.executor": "Run",
-    "Maven.Gastro-Food-Management [install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Connection.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DishDaoImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DishDaoImplTest.testGetAvailable.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DishDaoImplTest.testGetByCriteria.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.IngredientDaoImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StockMovementTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StockMovementTest.testStockQuantitiesAfterExits.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Gastro-Food-Management [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="JUnit.DishDaoImplTest.testGetAvailable">
+}</component>
+  <component name="RunManager" selected="JUnit.Test">
     <configuration name="Connection" type="Application" factoryName="Application">
       <envs>
         <env name="DB_NAME" value="gastro_mng" />
@@ -181,11 +174,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Test" />
+        <item itemvalue="JUnit.StockMovementTest" />
         <item itemvalue="JUnit.DishDaoImplTest.testGetAvailable" />
         <item itemvalue="JUnit.StockMovementTest.testStockQuantitiesAfterExits" />
-        <item itemvalue="JUnit.StockMovementTest" />
         <item itemvalue="JUnit.IngredientDaoImplTest" />
-        <item itemvalue="JUnit.Test" />
       </list>
     </recent_temporary>
   </component>

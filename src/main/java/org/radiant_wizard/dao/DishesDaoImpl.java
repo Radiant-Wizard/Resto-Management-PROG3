@@ -33,31 +33,6 @@ public class DishesDaoImpl implements DishesDao {
         return dishes;
     }
 
-//    private List<Ingredient> convertIngredientsTableRows(ResultSet resultSet, List<Price> priceList) throws SQLException {
-//        List<Ingredient> ingredients = new ArrayList<>();
-//        while (resultSet.next()) {
-//            ingredients.add(new Ingredient(
-//                    resultSet.getLong("ingredientId"),
-//                    resultSet.getString("ingredient_name"),
-//                    resultSet.getObject("last_modification", LocalDateTime.class),
-//                    Unit.valueOf(resultSet.getString("unit")),
-//                    priceList,
-//                    resultSet.getDouble("quantity")
-//            ));
-//        }
-//        return ingredients;
-//    }
-//
-//    private List<Price> convertIngredientsPriceTableRows(ResultSet resultSet) throws SQLException {
-//        List<Price> priceList = new ArrayList<>();
-//        while (resultSet.next()) {
-//            priceList.add(new Price(
-//                    resultSet.getObject("creation_date_and_last_modification_time", LocalDateTime.class),
-//                    resultSet.getDouble("unit_price")
-//                    ));
-//        }
-//        return priceList;
-//    }
 
     private List<StockMovement> getStockForIngredient(long ingredientId) {
         List<StockMovement> stockList = new ArrayList<>();

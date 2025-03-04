@@ -3,9 +3,8 @@ package org.radiant_wizard.Entity;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.Comparator;
 import java.util.List;
+import java.util.OptionalDouble;
 
 @Getter
 public class Dish {
@@ -48,17 +47,25 @@ public class Dish {
     }
 
     public Double getAvailableQuantity(LocalDateTime localDateTime) {
-        LocalDateTime usedDate = localDateTime == null ? LocalDateTime.now() : localDateTime;
-
-
-        double smallestAvailableDishQuantity = Double.MAX_VALUE;
-        for (Ingredient ingredient : this.ingredients) {
-            double availableDishMade = Math.round(ingredient.getAvailableQuantity(usedDate) / ingredient.getNeededQuantity());
-            if (availableDishMade < smallestAvailableDishQuantity) {
-                smallestAvailableDishQuantity = availableDishMade;
-            }
-        }
-        return smallestAvailableDishQuantity;
+//        double smallestAvailableDishQuantity = Double.MAX_VALUE;
+//        for (Ingredient ingredient : this.ingredients) {
+//            double availableDishMade = Math.round(ingredient.getAvailableQuantity(usedDate) / ingredient.getNeededQuantity());
+//            if (availableDishMade < smallestAvailableDishQuantity) {
+//                smallestAvailableDishQuantity = availableDishMade;
+//            }
+//        }
+        return this.ingredients
+                .stream()
+                .mapToDouble(ingredient -> ( Math.round( ingredient.getAvailableQuantity(localDateTime) / ingredient.getNeededQuantity())))
+                .min()
+                .orElse(0);
+    }
+    public Double getAvailableQuantity(){
+        return this.ingredients
+                .stream()
+                .mapToDouble(ingredient -> ( Math.round( ingredient.getAvailableQuantity() / ingredient.getNeededQuantity())))
+                .min()
+                .orElse(0);
     }
 
     @Override

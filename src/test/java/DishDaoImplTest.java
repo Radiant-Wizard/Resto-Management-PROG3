@@ -57,6 +57,7 @@ public class DishDaoImplTest {
         Dish hotdog = dishesDao.getDishesById(16);
 
         assertEquals(30, hotdog.getAvailableQuantity(testDate));
+        assertEquals(30, hotdog.getAvailableQuantity());
     }
     @Test
     @DisplayName("test if the getDishByCriteria work fine")

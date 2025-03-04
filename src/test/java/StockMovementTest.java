@@ -64,4 +64,11 @@ public class StockMovementTest {
         Assertions.assertFalse(stockMovementList.isEmpty(), "Stock movement list should not be empty");
         Assertions.assertEquals(5, stockMovementList.size(), "Stock movement list should have 5 items");
     }
+
+    @Test
+    public void testTheGetAvailableQuantityWithoutParameters() throws SQLException{
+        Ingredient egg = ingredientDao.getIngredientByCriteria(List.of(new Criteria("ingredient_id", "18", "=", LogicalOperator.AND)), null, null, 1, 1).getFirst();
+
+        Assertions.assertEquals(80.0, egg.getAvailableQuantity());
+    }
 }

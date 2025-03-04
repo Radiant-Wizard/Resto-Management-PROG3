@@ -58,19 +58,42 @@ public class Ingredient {
 
 
     public double getAvailableQuantity(LocalDateTime ofThisDate) {
-
         LocalDateTime localDateTime = (ofThisDate == null ? LocalDateTime.now(): ofThisDate);
-        double currentAvailableQuantity = 0.0;
-        for (StockMovement stockMovement : this.stockMovements) {
-            if (stockMovement.getMovementDate().isBefore(localDateTime) || stockMovement.getMovementDate().isEqual(localDateTime)) {
-                if (stockMovement.getMovementType().equals(MovementType.ENTRY)) {
-                    currentAvailableQuantity += stockMovement.getMovementQuantity();
-                } else if (stockMovement.getMovementType().equals(MovementType.EXIT)) {
-                    currentAvailableQuantity -= stockMovement.getMovementQuantity();
-                }
-            }
-        }
-        return currentAvailableQuantity;
+//        double currentAvailableQuantity = 0.0;
+//        for (StockMovement stockMovement : this.stockMovements) {
+//            if (stockMovement.getMovementDate().isBefore(localDateTime) || stockMovement.getMovementDate().isEqual(localDateTime)) {
+//                if (stockMovement.getMovementType().equals(MovementType.ENTRY)) {
+//                    currentAvailableQuantity += stockMovement.getMovementQuantity();
+//                } else if (stockMovement.getMovementType().equals(MovementType.EXIT)) {
+//                    currentAvailableQuantity -= stockMovement.getMovementQuantity();
+//                }
+//            }
+//        }
+        Double totalEntryQuantity = this.stockMovements
+                .stream()
+                .filter(stockMovement -> (stockMovement.getMovementDate().isBefore(localDateTime) || stockMovement.getMovementDate().isEqual(localDateTime)) && stockMovement.getMovementType() == MovementType.ENTRY)
+                .map(StockMovement::getMovementQuantity)
+                .reduce(0.0, Double::sum);
+        Double totalExitQuantity = this.stockMovements
+                .stream()
+                .filter(stockMovement -> (stockMovement.getMovementDate().isBefore(localDateTime) || stockMovement.getMovementDate().isEqual(localDateTime)) && stockMovement.getMovementType() == MovementType.EXIT)
+                .map(StockMovement::getMovementQuantity)
+                .reduce(0.0, Double::sum);
+        return totalEntryQuantity - totalExitQuantity;
+    }
+
+    public double getAvailableQuantity(){
+        Double totalEntryQuantity = this.stockMovements
+                .stream()
+                .filter(stockMovement -> stockMovement.getMovementType() == MovementType.ENTRY)
+                .map(StockMovement::getMovementQuantity)
+                .reduce(0.0, Double::sum);
+        Double totalExitQuantity = this.stockMovements
+                .stream()
+                .filter(stockMovement ->  stockMovement.getMovementType() == MovementType.EXIT)
+                .map(StockMovement::getMovementQuantity)
+                .reduce(0.0, Double::sum);
+        return totalEntryQuantity - totalExitQuantity;
     }
 
 }
