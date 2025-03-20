@@ -1,7 +1,7 @@
 package org.radiant_wizard.db;
 
 import lombok.Getter;
-import org.radiant_wizard.Entity.LogicalOperator;
+import org.radiant_wizard.Entity.Enum.LogicalOperator;
 
 @Getter
 public class Criteria {
