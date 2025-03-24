@@ -1,11 +1,13 @@
 package org.radiant_wizard.Entity;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.ToString;
+import org.radiant_wizard.Entity.Enum.MovementType;
+import org.radiant_wizard.Entity.Enum.Unit;
 
 import java.time.LocalDateTime;
 
-@Getter
+@Data
 @ToString
 public class StockMovement {
     private final long ingredientId;

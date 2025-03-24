@@ -1,6 +1,9 @@
 package org.radiant_wizard.dao;
 
 import org.radiant_wizard.Entity.*;
+import org.radiant_wizard.Entity.Enum.LogicalOperator;
+import org.radiant_wizard.Entity.Enum.MovementType;
+import org.radiant_wizard.Entity.Enum.Unit;
 import org.radiant_wizard.db.Criteria;
 import org.radiant_wizard.db.Datasource;
 

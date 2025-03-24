@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.radiant_wizard.Entity.*;
+import org.radiant_wizard.Entity.Enum.LogicalOperator;
 import org.radiant_wizard.dao.IngredientDaoImpl;
 import org.radiant_wizard.dao.StockMovementDaoImpl;
 import org.radiant_wizard.db.Criteria;
@@ -44,10 +45,10 @@ public class StockMovementTest {
         // Test stock quantities after exit movements
         LocalDateTime testDate = LocalDateTime.of(2025, 2, 24, 12, 0);
 
-        Ingredient egg = ingredientDao.getIngredientByCriteria(List.of(new Criteria("ingredient_id", "18", "=", LogicalOperator.AND)), null, null, 1, 1).getFirst();
-        Ingredient bread = ingredientDao.getIngredientByCriteria(List.of(new Criteria("ingredient_id", "11", "=", LogicalOperator.AND)), null, null, 1, 1).getFirst();
-        Ingredient sausage = ingredientDao.getIngredientByCriteria(List.of(new Criteria("ingredient_id", "16", "=", LogicalOperator.AND)), null, null, 1, 1).getFirst();
-        Ingredient oil = ingredientDao.getIngredientByCriteria(List.of(new Criteria("ingredient_id", "17", "=", LogicalOperator.AND)), null, null, 1, 1).getFirst();
+        Ingredient egg = ingredientDao.getIngredientById(4);
+        Ingredient bread = ingredientDao.getIngredientById(1);
+        Ingredient sausage = ingredientDao.getIngredientById(2);
+        Ingredient oil = ingredientDao.getIngredientById(3);
 
         Assertions.assertEquals(80.0, egg.getAvailableQuantity(testDate), "Egg stock should be 80 units after exits");
         Assertions.assertEquals(30, bread.getAvailableQuantity(testDate), "Bread stock should be 80 units after exits");
@@ -65,7 +66,7 @@ public class StockMovementTest {
 
     @Test
     public void testTheGetAvailableQuantityWithoutParameters() throws SQLException{
-        Ingredient egg = ingredientDao.getIngredientByCriteria(List.of(new Criteria("ingredient_id", "18", "=", LogicalOperator.AND)), null, null, 1, 1).getFirst();
+        Ingredient egg = ingredientDao.getIngredientById(4);
 
         Assertions.assertEquals(80.0, egg.getAvailableQuantity());
     }
