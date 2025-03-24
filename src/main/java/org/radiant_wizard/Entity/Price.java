@@ -1,12 +1,13 @@
 package org.radiant_wizard.Entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter
+@Data
 @ToString
 public class Price {
     LocalDateTime modificationDate;
