@@ -1,14 +1,16 @@
 package org.radiant_wizard.Entity;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.ToString;
+import org.radiant_wizard.Entity.Enum.MovementType;
+import org.radiant_wizard.Entity.Enum.Unit;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 import java.util.List;
 
-@Getter
+@Data
 @ToString
 public class Ingredient {
     private final Long ingredientId;
@@ -17,7 +19,7 @@ public class Ingredient {
     private final Unit unit;
     private double neededQuantity;
     private final List<Price> unitPrice;
-    private List<StockMovement> stockMovements;
+    private final List<StockMovement> stockMovements;
 
 
     public Ingredient(Long ingredientId, String ingredientName, LocalDateTime lastModification, Unit unit, List<Price> unitPrice, List<StockMovement> stockMovements) {
