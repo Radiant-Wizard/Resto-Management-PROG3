@@ -7,36 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c533c43-0ae4-4d54-a4c4-f8eed4549eaa" name="Changes" comment="chore(Dish): made LogicalOperator an Enum">
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/DishOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Enum/StatusType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Status.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishOrderDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishOrderDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/OrderDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/OrderDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StatusDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StatusDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/OrderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Dish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Ingredient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/LogicalOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Enum/LogicalOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/MovementType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Enum/MovementType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Price.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Price.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/StockMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/StockMovement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/DishDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DishDaoImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/IngredientDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IngredientDaoImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/StockMovementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/StockMovementTest.java" afterDir="false" />
+    <list default="true" id="0c533c43-0ae4-4d54-a4c4-f8eed4549eaa" name="Changes" comment="fix(main): removed useless line">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/OrderDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/OrderDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StatusDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StatusDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StatusDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StatusDaoImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -312,7 +286,135 @@
       <option name="project" value="LOCAL" />
       <updated>1742479648114</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feat: added stockMovement management">
+      <option name="closed" value="true" />
+      <created>1742803812285</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1742803812285</updated>
+    </task>
+    <task id="LOCAL-00012" summary="chore(StatusType): changed StatusType into an ENUM instead of a simple String">
+      <option name="closed" value="true" />
+      <created>1742803893602</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1742803893602</updated>
+    </task>
+    <task id="LOCAL-00013" summary="chore(MovementType): changed MovementType into an ENUM instead of a Simple String">
+      <option name="closed" value="true" />
+      <created>1742803942901</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1742803942901</updated>
+    </task>
+    <task id="LOCAL-00014" summary="chore(LogicalOperator): added LogicalOperator ENUM for Criteria">
+      <option name="closed" value="true" />
+      <created>1742804000290</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804000290</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix(Ingredient): fixed missing import">
+      <option name="closed" value="true" />
+      <created>1742804052948</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804052948</updated>
+    </task>
+    <task id="LOCAL-00016" summary="chore(IngredientDao): added method to getIngredientBy id">
+      <option name="closed" value="true" />
+      <created>1742804090479</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804090479</updated>
+    </task>
+    <task id="LOCAL-00017" summary="chore(IngredientDao): added method to getIngredientBy id">
+      <option name="closed" value="true" />
+      <created>1742804116647</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804116647</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fix(Price): changed @Getter to @Data to have the setter too">
+      <option name="closed" value="true" />
+      <created>1742804193168</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804193168</updated>
+    </task>
+    <task id="LOCAL-00019" summary="chore: created order and dishOrder entities">
+      <option name="closed" value="true" />
+      <created>1742804220984</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804220984</updated>
+    </task>
+    <task id="LOCAL-00020" summary="chore: added dishOrder Dao">
+      <option name="closed" value="true" />
+      <created>1742804239844</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804239844</updated>
+    </task>
+    <task id="LOCAL-00021" summary="chore: created order Dao">
+      <option name="closed" value="true" />
+      <created>1742804257908</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804257908</updated>
+    </task>
+    <task id="LOCAL-00022" summary="test: added test for OrderTest">
+      <option name="closed" value="true" />
+      <created>1742804281953</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804281953</updated>
+    </task>
+    <task id="LOCAL-00023" summary="chore: added entries to project and plugins configuration files">
+      <option name="closed" value="true" />
+      <created>1742804333275</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804333275</updated>
+    </task>
+    <task id="LOCAL-00024" summary="test(IngredientDao): added more test to test the logical operator">
+      <option name="closed" value="true" />
+      <created>1742804377105</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804377105</updated>
+    </task>
+    <task id="LOCAL-00025" summary="chore(Status): created Status Entity and its Dao">
+      <option name="closed" value="true" />
+      <created>1742804403126</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804403126</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fix(main): removed useless line">
+      <option name="closed" value="true" />
+      <created>1742804419721</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1742804419721</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -336,6 +438,21 @@
     <MESSAGE value="chore(orders): made order_reference UNIQUE" />
     <MESSAGE value="chore(migration): made foreign delete on cascade" />
     <MESSAGE value="chore(Criteria): made LogicalOperator an Enum" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore(Criteria): made LogicalOperator an Enum" />
+    <MESSAGE value="feat: added stockMovement management" />
+    <MESSAGE value="chore(StatusType): changed StatusType into an ENUM instead of a simple String" />
+    <MESSAGE value="chore(MovementType): changed MovementType into an ENUM instead of a Simple String" />
+    <MESSAGE value="chore(LogicalOperator): added LogicalOperator ENUM for Criteria" />
+    <MESSAGE value="fix(Ingredient): fixed missing import" />
+    <MESSAGE value="chore(IngredientDao): added method to getIngredientBy id" />
+    <MESSAGE value="fix(Price): changed @Getter to @Data to have the setter too" />
+    <MESSAGE value="chore: created order and dishOrder entities" />
+    <MESSAGE value="chore: added dishOrder Dao" />
+    <MESSAGE value="chore: created order Dao" />
+    <MESSAGE value="test: added test for OrderTest" />
+    <MESSAGE value="chore: added entries to project and plugins configuration files" />
+    <MESSAGE value="test(IngredientDao): added more test to test the logical operator" />
+    <MESSAGE value="chore(Status): created Status Entity and its Dao" />
+    <MESSAGE value="fix(main): removed useless line" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(main): removed useless line" />
   </component>
 </project>
