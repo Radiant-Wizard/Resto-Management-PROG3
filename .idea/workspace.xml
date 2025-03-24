@@ -7,12 +7,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c533c43-0ae4-4d54-a4c4-f8eed4549eaa" name="Changes" comment="">
+    <list default="true" id="0c533c43-0ae4-4d54-a4c4-f8eed4549eaa" name="Changes" comment="chore(Dish): made LogicalOperator an Enum">
+      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/DishOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Enum/StatusType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishOrderDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishOrderDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/OrderDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/OrderDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StatusDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StatusDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/OrderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Dish.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Ingredient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/LogicalOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Enum/LogicalOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/MovementType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Enum/MovementType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Price.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/Price.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/StockMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Entity/StockMovement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/DishesDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/IngredientDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/radiant_wizard/dao/StockMovementDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/DishDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DishDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/IngredientDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IngredientDaoImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/StockMovementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/StockMovementTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +46,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -32,8 +55,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -50,28 +80,39 @@
     &quot;JUnit.DishDaoImplTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.DishDaoImplTest.testGetAvailable.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.DishDaoImplTest.testGetByCriteria.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DishDaoImplTest.testGetDishes.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DishOrderTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.IngredientDaoImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.StockMovementTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.OrderTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StockMovementTest.executor&quot;: &quot;Debug&quot;,
     &quot;JUnit.StockMovementTest.testStockQuantitiesAfterExits.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.Test.executor&quot;: &quot;Run&quot;,
     &quot;Maven.Gastro-Food-Management [install].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tarat/Documents/Idea/Gastro-Food-Management/src/main/java/org/radiant_wizard/db/migration&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AtomHomeConfigurable&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.Test">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tarat\Documents\Idea\Gastro-Food-Management\src\main\java\org\radiant_wizard\db\migration" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.OrderTest">
     <configuration name="Connection" type="Application" factoryName="Application">
       <envs>
         <env name="DB_NAME" value="gastro_mng" />
         <env name="HOST" value="localhost" />
         <env name="PORT" value="5432" />
         <env name="USER_PASSWORD" value="usagi-san" />
-        <env name="USERNAME" value="gastro_manager" />
+        <env name="USERNAME" value="tarat" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="org.radiant_wizard.Main" />
       <module name="Gastro-Food-Management" />
@@ -79,18 +120,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DishDaoImplTest.testGetAvailable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DishDaoImplTest.testGetDishes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Gastro-Food-Management" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="DishDaoImplTest" />
-      <option name="METHOD_NAME" value="testGetAvailable" />
+      <option name="METHOD_NAME" value="testGetDishes" />
       <option name="TEST_OBJECT" value="method" />
       <envs>
         <env name="DB_NAME" value="gastro_mng" />
         <env name="HOST" value="localhost" />
         <env name="PORT" value="5432" />
         <env name="USER_PASSWORD" value="usagi-san" />
-        <env name="USERNAME" value="gastro_manager" />
+        <env name="USERNAME" value="tarat" />
       </envs>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -107,7 +148,24 @@
         <env name="HOST" value="localhost" />
         <env name="PORT" value="5432" />
         <env name="USER_PASSWORD" value="usagi-san" />
-        <env name="USERNAME" value="gastro_manager" />
+        <env name="USERNAME" value="tarat" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Gastro-Food-Management" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="OrderTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <envs>
+        <env name="DB_NAME" value="gastro_mng" />
+        <env name="HOST" value="localhost" />
+        <env name="PORT" value="5432" />
+        <env name="USER_PASSWORD" value="usagi-san" />
+        <env name="USERNAME" value="tarat" />
       </envs>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -124,24 +182,7 @@
         <env name="HOST" value="localhost" />
         <env name="PORT" value="5432" />
         <env name="USER_PASSWORD" value="usagi-san" />
-        <env name="USERNAME" value="gastro_manager" />
-      </envs>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StockMovementTest.testStockQuantitiesAfterExits" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Gastro-Food-Management" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="StockMovementTest" />
-      <option name="METHOD_NAME" value="testStockQuantitiesAfterExits" />
-      <option name="TEST_OBJECT" value="method" />
-      <envs>
-        <env name="DB_NAME" value="gastro_mng" />
-        <env name="HOST" value="localhost" />
-        <env name="PORT" value="5432" />
-        <env name="USER_PASSWORD" value="usagi-san" />
-        <env name="USERNAME" value="gastro_manager" />
+        <env name="USERNAME" value="tarat" />
       </envs>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -158,7 +199,7 @@
         <env name="HOST" value="localhost" />
         <env name="PORT" value="5432" />
         <env name="USER_PASSWORD" value="usagi-san" />
-        <env name="USERNAME" value="gastro_manager" />
+        <env name="USERNAME" value="tarat" />
       </envs>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -166,19 +207,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Connection" />
-      <item itemvalue="JUnit.DishDaoImplTest.testGetAvailable" />
-      <item itemvalue="JUnit.StockMovementTest.testStockQuantitiesAfterExits" />
-      <item itemvalue="JUnit.StockMovementTest" />
+      <item itemvalue="JUnit.OrderTest" />
       <item itemvalue="JUnit.IngredientDaoImplTest" />
+      <item itemvalue="JUnit.DishDaoImplTest.testGetDishes" />
+      <item itemvalue="JUnit.StockMovementTest" />
       <item itemvalue="JUnit.Test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.OrderTest" />
         <item itemvalue="JUnit.Test" />
         <item itemvalue="JUnit.StockMovementTest" />
-        <item itemvalue="JUnit.DishDaoImplTest.testGetAvailable" />
-        <item itemvalue="JUnit.StockMovementTest.testStockQuantitiesAfterExits" />
         <item itemvalue="JUnit.IngredientDaoImplTest" />
+        <item itemvalue="JUnit.DishDaoImplTest.testGetDishes" />
       </list>
     </recent_temporary>
   </component>
@@ -191,6 +232,87 @@
       <option name="presentableId" value="Default" />
       <updated>1740079064445</updated>
     </task>
+    <task id="LOCAL-00001" summary="chore(migration): create the migration file for orders, order_dish, and their status table">
+      <option name="closed" value="true" />
+      <created>1742234771622</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1742234771622</updated>
+    </task>
+    <task id="LOCAL-00002" summary="test(stockMovement): added test for stockMovement">
+      <option name="closed" value="true" />
+      <created>1742234807477</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742234807477</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix(migration): fixed the naming inconsistency">
+      <option name="closed" value="true" />
+      <created>1742235650513</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742235650513</updated>
+    </task>
+    <task id="LOCAL-00004" summary="chore(testData): fixed the naming inconsistency and removed the unused insert">
+      <option name="closed" value="true" />
+      <created>1742235699228</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742235699229</updated>
+    </task>
+    <task id="LOCAL-00005" summary="chore(Unit): added the ENUM unit for the unitType">
+      <option name="closed" value="true" />
+      <created>1742396100718</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742396100718</updated>
+    </task>
+    <task id="LOCAL-00006" summary="chore(Unit): added the ENUM unit for the unitType">
+      <option name="closed" value="true" />
+      <created>1742396110597</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742396110597</updated>
+    </task>
+    <task id="LOCAL-00007" summary="chore(mock_data): added mock data for order and dish order">
+      <option name="closed" value="true" />
+      <created>1742479438512</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742479438512</updated>
+    </task>
+    <task id="LOCAL-00008" summary="chore(orders): made order_reference UNIQUE">
+      <option name="closed" value="true" />
+      <created>1742479571764</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742479571764</updated>
+    </task>
+    <task id="LOCAL-00009" summary="chore(migration): made foreign delete on cascade">
+      <option name="closed" value="true" />
+      <created>1742479611338</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1742479611338</updated>
+    </task>
+    <task id="LOCAL-00010" summary="chore(Criteria): made LogicalOperator an Enum">
+      <option name="closed" value="true" />
+      <created>1742479648114</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1742479648114</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,5 +325,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="chore(migration): create the migration file for orders, order_dish, and their status table" />
+    <MESSAGE value="test(stockMovement): added test for stockMovement" />
+    <MESSAGE value="fix(migration): fixed the naming inconsistency" />
+    <MESSAGE value="chore(testData): fixed the naming inconsistency and removed the unused insert" />
+    <MESSAGE value="chore(Unit): added the ENUM unit for the unitType" />
+    <MESSAGE value="chore(mock_data): added mock data for order and dish order" />
+    <MESSAGE value="chore(orders): made order_reference UNIQUE" />
+    <MESSAGE value="chore(migration): made foreign delete on cascade" />
+    <MESSAGE value="chore(Criteria): made LogicalOperator an Enum" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore(Criteria): made LogicalOperator an Enum" />
   </component>
 </project>

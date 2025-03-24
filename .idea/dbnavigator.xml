@@ -39,7 +39,12 @@
     <connection id="a9e56850-3df9-4511-af49-2e7949731d1d" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.order_status" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.order_dish_status" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.order_dish" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.see_dishes" active-filter-id="" />
+    <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.orders" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.commands" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.dish_ingredients" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.ingredients" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" dataset="public.dishes" active-filter-id="EMPTY_FILTER" />
@@ -48,18 +53,21 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/stock_movement.sql" connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" session-id="MAIN" current-schema="gastro_mng" />
-    <mapping file-url="file://$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/dish_ingredients_table_creation.sql" connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" session-id="MAIN" current-schema="public" />
-    <mapping file-url="file://$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/dish_table_creation.sql" connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" session-id="MAIN" current-schema="public" />
+    <mapping file-url="file://$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/testdata/6_mock_data_dish_order.sql" connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" session-id="MAIN" current-schema="public" />
+    <mapping file-url="file://$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/testdata/5_mock_data_order.sql" connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" session-id="MAIN" current-schema="public" />
     <mapping file-url="file://$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/views/dish_ingredient_table_view.sql" connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" session-id="MAIN" current-schema="gastro_mng" />
-    <mapping file-url="file://$PROJECT_DIR$/src/main/java/org/radiant_wizard/db/migration/ingredients_table_creation.sql" connection-id="a9e56850-3df9-4511-af49-2e7949731d1d" session-id="MAIN" current-schema="public" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
+  <component name="DBNavigator.Project.ParserDiagnosticsManager">
+    <diagnostics-history />
+  </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
-    <recently-used-interfaces />
+    <recently-used-interfaces>
+      <mapping database-type="POSTGRES" interface-id="DEFAULT" />
+    </recently-used-interfaces>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
@@ -80,11 +88,11 @@
           <tns-folder value="" />
           <tns-profile value="" />
           <type value="USER_PASSWORD" />
-          <user value="gastro_manager" />
+          <user value="tarat" />
           <token-type value="" />
           <token-config-file value="" />
           <token-profile value="" />
-          <session-user value="gastro_manager" />
+          <session-user value="tarat" />
         </database>
         <properties>
           <auto-commit value="false" />
@@ -224,10 +232,10 @@
       <lookup-filters>
         <lookup-objects>
           <object-type name="SCHEMA" enabled="true" />
-          <object-type name="USER" enabled="false" />
-          <object-type name="ROLE" enabled="false" />
-          <object-type name="PRIVILEGE" enabled="false" />
-          <object-type name="CHARSET" enabled="false" />
+          <object-type name="USER" enabled="true" />
+          <object-type name="ROLE" enabled="true" />
+          <object-type name="PRIVILEGE" enabled="true" />
+          <object-type name="CHARSET" enabled="true" />
           <object-type name="TABLE" enabled="true" />
           <object-type name="VIEW" enabled="true" />
           <object-type name="MATERIALIZED VIEW" enabled="true" />
