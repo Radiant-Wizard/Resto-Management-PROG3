@@ -9,5 +9,5 @@ public interface StatusDao {
     List<Status> getStatusForOrder(long orderId);
     List<Status> getStatusForDishOrder(long dishOrderId);
     void insertStatusForOrder(long orderId, StatusType status);
-    void insertStatusForDishOrder(long dishOrderId);
+    void insertStatusForDishOrder(long dishOrderId, StatusType statusType);
 }

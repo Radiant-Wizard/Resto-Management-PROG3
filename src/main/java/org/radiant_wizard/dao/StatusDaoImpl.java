@@ -41,7 +41,25 @@ public class StatusDaoImpl implements StatusDao{
 
     @Override
     public List<Status> getStatusForDishOrder(long dishOrderId) {
-        return List.of();
+        List<Status> statusList = new ArrayList<>();
+        String query =
+                "SELECT order_dish_id, order_dish_creation_date, order_dish_status from order_dish_status where order_dish_id = ?";
+        try (Connection connection = datasource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)
+        ) {
+            preparedStatement.setLong(1, dishOrderId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    statusList.add(new Status(
+                            StatusType.valueOf(resultSet.getString("order_dish_status")),
+                            resultSet.getTimestamp("order_dish_creation_date").toInstant()
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return statusList;
     }
 
     @Override
@@ -60,7 +78,18 @@ public class StatusDaoImpl implements StatusDao{
     }
 
     @Override
-    public void insertStatusForDishOrder(long dishOrderId) {
+    public void insertStatusForDishOrder(long orderDishId, StatusType statusType) {
+        String sql = "INSERT INTO order_dish_status (order_dish_id,order_dish_status, order_dish_creation_date) values(?,?::statusType,?::TIMESTAMP);";
 
+        try (Connection connection = datasource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)
+        ) {
+            preparedStatement.setLong(1, orderDishId);
+            preparedStatement.setString(2, statusType.toString());
+            preparedStatement.setTimestamp(3, Timestamp.from(Instant.now()));
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
