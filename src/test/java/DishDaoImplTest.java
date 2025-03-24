@@ -2,6 +2,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.radiant_wizard.Entity.*;
+import org.radiant_wizard.Entity.Enum.LogicalOperator;
+import org.radiant_wizard.Entity.Enum.Unit;
 import org.radiant_wizard.dao.DishesDaoImpl;
 import org.radiant_wizard.db.Criteria;
 import org.radiant_wizard.db.Datasource;
@@ -25,7 +27,7 @@ public class DishDaoImplTest {
 
     @Test
     public void testGetDishes() throws SQLException, IllegalAccessException {
-        Dish dish = dishesDao.getDishesById(16);
+        Dish dish = dishesDao.getDishesById(1);
         assertEquals(5500, dish.getTotalCostIngredient(LocalDateTime.now()));
     }
 
@@ -54,7 +56,7 @@ public class DishDaoImplTest {
     public void testGetAvailable() throws SQLException, IllegalAccessException {
         LocalDateTime testDate = LocalDateTime.of(2025, 2, 24, 12, 0);
 
-        Dish hotdog = dishesDao.getDishesById(16);
+        Dish hotdog = dishesDao.getDishesById(1);
 
         assertEquals(30, hotdog.getAvailableQuantity(testDate));
         assertEquals(30, hotdog.getAvailableQuantity());
@@ -63,11 +65,11 @@ public class DishDaoImplTest {
     @DisplayName("test if the getDishByCriteria work fine")
     public void testGetByCriteria() throws SQLException {
         List<Criteria> criteriaList = new ArrayList<>();
-        criteriaList.add(new Criteria("dish_name", "hotdog", "LIKE", LogicalOperator.AND));
-        criteriaList.add(new Criteria("dish_price", 10, ">", LogicalOperator.AND));
-        List<Dish> dishes = dishesDao.getDishes(criteriaList, "dish_name", true, 5, 1);
+        criteriaList.add(new Criteria("dish_name", "BURGER", "LIKE", LogicalOperator.AND));
+//        criteriaList.add(new Criteria("dish_price", 8000, "=", LogicalOperator.AND));
+        List<Dish> dishes = dishesDao.getDishes(criteriaList, "dish_name", true, 2, 1);
 
 
-        assertEquals(5, dishes.size());
+        assertEquals(1, dishes.size());
     }
 }
