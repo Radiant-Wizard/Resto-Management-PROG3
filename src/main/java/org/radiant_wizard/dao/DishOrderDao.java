@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DishOrderDao {
 
-    void updateDishOrderStatus(StatusType statusType, long commandId);
+    void updateDishOrderStatus(StatusType statusType, long orderId);
 
     void addDishOrder(DishOrder dishOrder, long orderId);
 
