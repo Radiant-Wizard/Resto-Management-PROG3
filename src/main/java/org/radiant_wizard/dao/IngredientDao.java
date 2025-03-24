@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface IngredientDao {
     List<Ingredient> getIngredientByCriteria(List<Criteria> criteriaList, String orderBy,Boolean ascending,Integer pageSize,Integer pageNumber) throws SQLException;
-//    double getAvailableQuantity(long ingredientId);
+    Ingredient getIngredientById(long id);
 }
