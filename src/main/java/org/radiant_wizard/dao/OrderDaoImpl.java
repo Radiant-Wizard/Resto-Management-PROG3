@@ -18,9 +18,9 @@ public class OrderDaoImpl implements OrderDao {
     StatusDaoImpl statusDao;
 
     public OrderDaoImpl(Datasource datasource) {
-
         this.datasource = datasource;
         this.dishOrderDao = new DishOrderDaoImpl(datasource);
+        this.statusDao = new StatusDaoImpl(datasource);
     }
 
     @Override
@@ -114,16 +114,7 @@ public class OrderDaoImpl implements OrderDao {
                 statement.executeUpdate();
             }
         }
-
-        String statusInsert =
-                "insert into order_status (order_id, order_status, order_creation_date ) values (?, ?::statusType, ?::TIMESTAMP) ON CONFLICT DO NOTHING;";
-        try (Connection connection = datasource.getConnection();
-             PreparedStatement statement1 = connection.prepareStatement(statusInsert)) {
-            statement1.setLong(1, order.getOrderID());
-            statement1.setString(2, StatusType.CREATED.toString());
-            statement1.setTimestamp(3, Timestamp.from(Instant.now()));
-            statement1.executeUpdate();
-        }
+        statusDao.insertStatusForOrder(order.getOrderID(), StatusType.CREATED);
     }
 
     @Override
@@ -133,16 +124,7 @@ public class OrderDaoImpl implements OrderDao {
         }
 
         if (!order.getOrderedDish().isEmpty()) {
-            String statusInsert =
-                    "insert into order_status (order_id, order_status, order_creation_date ) values (?, ?::statusType, ?::TIMESTAMP) ON CONFLICT DO NOTHING;";
-            try (Connection connection = datasource.getConnection();
-                 PreparedStatement statement1 = connection.prepareStatement(statusInsert)) {
-                statement1.setLong(1, order.getOrderID());
-                statement1.setString(2, StatusType.CONFIRMED.toString());
-                statement1.setTimestamp(3, Timestamp.from(Instant.now()));
-                statement1.executeUpdate();
-            }
-
+            statusDao.insertStatusForOrder(order.getOrderID(), StatusType.CONFIRMED);
             for (DishOrder dishOrder : order.getOrderedDish()) {
                 dishOrderDao.addDishOrder(dishOrder, order.getOrderID());
             }
@@ -161,18 +143,7 @@ public class OrderDaoImpl implements OrderDao {
         if (statusType == StatusType.SERVED && order.getActualStatus() != StatusType.FINISHED && !order.getOrderedDish().isEmpty()) {
             throw new RuntimeException("All the dishes are not finished yet!");
         } else {
-            String sql = "INSERT INTO order_status (order_id, order_status, order_creation_date) VALUES (?, ?::statusType,?::TIMESTAMP)";
-
-            try (Connection connection = datasource.getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)
-            ) {
-                preparedStatement.setLong(1, orderId);
-                preparedStatement.setString(2, String.valueOf(statusType));
-                preparedStatement.setTimestamp(3, Timestamp.from(Instant.now()));
-                preparedStatement.executeUpdate();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            statusDao.insertStatusForOrder(orderId, statusType);
         }
     }
 }
