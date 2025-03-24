@@ -1,6 +1,9 @@
 package org.radiant_wizard.dao;
 
 import org.radiant_wizard.Entity.*;
+import org.radiant_wizard.Entity.Enum.LogicalOperator;
+import org.radiant_wizard.Entity.Enum.MovementType;
+import org.radiant_wizard.Entity.Enum.Unit;
 import org.radiant_wizard.db.Criteria;
 import org.radiant_wizard.db.Datasource;
 
@@ -126,12 +129,11 @@ public class DishesDaoImpl implements DishesDao {
                 Object secondValue = criteria.getSecondValue();
                 query += String.format(" %s BETWEEN '%s' AND '%s' ", columnName, columnValue, secondValue);
             } else if ("LIKE".equalsIgnoreCase(operator)) {
-                query += String.format(" %s ILIKE '%%s%%' ", columnName, columnValue);
+                query += columnName + " ILIKE '%"+ columnValue + "%' ";
             } else {
                 query += String.format(" %s %s %s ", columnName, operator, columnValue);
             }
         }
-
         if (orderBy != null && !orderBy.isEmpty()) {
             query += " ORDER BY " + orderBy + (ascending ? " ASC " : " DESC ");
         }

@@ -1,12 +1,12 @@
 package org.radiant_wizard.Entity;
 
+import lombok.Data;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.OptionalDouble;
 
-@Getter
+@Data
 public class Dish {
     private final Long dishId;
     private final String dishName;
@@ -14,7 +14,7 @@ public class Dish {
     private final List<Ingredient> ingredients;
 
     public Dish(Long dishId, String dishName, Integer price, List<Ingredient> ingredients) throws IllegalAccessException {
-        if (ingredients == null ){
+        if (ingredients == null) {
             throw new IllegalAccessException();
         }
 
@@ -25,13 +25,13 @@ public class Dish {
     }
 
 
-    public double getTotalCostIngredient(LocalDateTime dateTime){
+    public double getTotalCostIngredient(LocalDateTime dateTime) {
         List<Ingredient> ingredients = this.ingredients;
         LocalDateTime now = LocalDateTime.now();
         double cost = 0;
 
 
-        for (Ingredient ingredient : ingredients){
+        for (Ingredient ingredient : ingredients) {
             Double nearestValue = ingredient.getNearestPrice(dateTime).getValue();
             cost += (ingredient.getNeededQuantity() * nearestValue);
 //            System.out.println(ingredient.getIngredientName() + " : " + ingredient.getNeededQuantity() + " : " + (ingredient.getNeededQuantity() * nearestValue));
@@ -39,11 +39,11 @@ public class Dish {
         return cost;
     }
 
-    public double getGrossMargin(LocalDateTime localDateTime){
+    public double getGrossMargin(LocalDateTime localDateTime) {
         double totalProductionCost = getTotalCostIngredient(localDateTime);
         double salePrice = this.price;
 
-        return totalProductionCost - salePrice ;
+        return totalProductionCost - salePrice;
     }
 
     public Double getAvailableQuantity(LocalDateTime localDateTime) {
@@ -56,14 +56,15 @@ public class Dish {
 //        }
         return this.ingredients
                 .stream()
-                .mapToDouble(ingredient -> ( Math.round( ingredient.getAvailableQuantity(localDateTime) / ingredient.getNeededQuantity())))
+                .mapToDouble(ingredient -> (Math.round(ingredient.getAvailableQuantity(localDateTime) / ingredient.getNeededQuantity())))
                 .min()
                 .orElse(0);
     }
-    public Double getAvailableQuantity(){
+
+    public Double getAvailableQuantity() {
         return this.ingredients
                 .stream()
-                .mapToDouble(ingredient -> ( Math.round( ingredient.getAvailableQuantity() / ingredient.getNeededQuantity())))
+                .mapToDouble(ingredient -> (Math.round(ingredient.getAvailableQuantity() / ingredient.getNeededQuantity())))
                 .min()
                 .orElse(0);
     }
@@ -74,12 +75,6 @@ public class Dish {
                 "  dishId      : " + dishId + ",\n" +
                 "  dishName    : '" + dishName + "',\n" +
                 "  price       : " + price + ",\n" +
-                "  ingredients : [\n" +
-                "    " + ingredients.stream()
-                .map(Ingredient::toString)
-                .reduce((a, b) -> a + ",\n    " + b)
-                .orElse("") +
-                "\n  ]\n" +
                 "}";
     }
 
