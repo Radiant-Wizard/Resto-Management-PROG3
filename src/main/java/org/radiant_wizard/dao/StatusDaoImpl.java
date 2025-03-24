@@ -4,10 +4,8 @@ import org.radiant_wizard.Entity.Enum.StatusType;
 import org.radiant_wizard.Entity.Status;
 import org.radiant_wizard.db.Datasource;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,5 +42,25 @@ public class StatusDaoImpl implements StatusDao{
     @Override
     public List<Status> getStatusForDishOrder(long dishOrderId) {
         return List.of();
+    }
+
+    @Override
+    public void insertStatusForOrder(long orderId, StatusType status) {
+        String statusInsert =
+                "insert into order_status (order_id, order_status, order_creation_date ) values (?, ?::statusType, ?::TIMESTAMP) ON CONFLICT DO NOTHING;";
+        try (Connection connection = datasource.getConnection();
+             PreparedStatement statement1 = connection.prepareStatement(statusInsert)) {
+            statement1.setLong(1, orderId);
+            statement1.setString(2, status.toString());
+            statement1.setTimestamp(3, Timestamp.from(Instant.now()));
+            statement1.executeUpdate();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void insertStatusForDishOrder(long dishOrderId) {
+
     }
 }
