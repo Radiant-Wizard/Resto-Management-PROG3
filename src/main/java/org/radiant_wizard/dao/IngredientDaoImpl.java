@@ -1,6 +1,9 @@
 package org.radiant_wizard.dao;
 
 import org.radiant_wizard.Entity.*;
+import org.radiant_wizard.Entity.Enum.LogicalOperator;
+import org.radiant_wizard.Entity.Enum.MovementType;
+import org.radiant_wizard.Entity.Enum.Unit;
 import org.radiant_wizard.db.Criteria;
 import org.radiant_wizard.db.Datasource;
 
@@ -80,7 +83,7 @@ public class IngredientDaoImpl implements IngredientDao {
                 Object secondValue = criteria.getSecondValue();
                 query += String.format(" %s BETWEEN '%s' AND '%s' ", columnName, columnValue, secondValue);
             }else if("LIKE".equalsIgnoreCase(operator)){
-                query += String.format(" %s ILIKE '%%s%%' ", columnName, columnValue);
+                query += columnName + " ILIKE '%"+ columnValue + "%' ";
             } else {
                 query += String.format(" %s %s %s ", columnName, operator, columnValue);
             }
@@ -114,6 +117,30 @@ public class IngredientDaoImpl implements IngredientDao {
         return ingredients;
     }
 
+    @Override
+    public Ingredient getIngredientById(long id) {
+        String query = "SELECT ingredient_id, ingredient_name, last_modification, unit_price, unit from ingredients where ingredient_id = ? ";
+        Ingredient ingredient = null;
+        try (Connection connection = datasource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+        ) {
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                ingredient = new Ingredient(
+                        resultSet.getLong("ingredient_id"),
+                        resultSet.getString("ingredient_name"),
+                        resultSet.getObject("last_modification", LocalDateTime.class),
+                        Unit.valueOf(resultSet.getString("unit")),
+                        getPriceForIngredient(id),
+                        getStockForIngredient(id)
+                );
+            }
+        } catch (SQLException e){
+            throw  new RuntimeException(e);
+        }
+        return ingredient;
+    }
 
 
 }
